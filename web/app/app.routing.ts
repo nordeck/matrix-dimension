@@ -184,7 +184,7 @@ const routes: Routes = [
                     {
                         path: "etherpad",
                         component: EtherpadWidgetConfigComponent,
-                        data: {breadcrumb: "Etherpad Widgets", name: "Etherpad Widgets"},
+                        data: {breadcrumb: "Notizen Widgets", name: "Notizen Widgets"},
                     },
                     {
                         path: "googlecalendar",
