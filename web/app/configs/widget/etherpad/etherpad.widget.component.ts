@@ -15,7 +15,7 @@ export class EtherpadWidgetConfigComponent extends WidgetComponent {
     private etherpadWidget: FE_EtherpadWidget = <FE_EtherpadWidget>SessionStorage.editIntegration;
 
     constructor(private nameService: NameService) {
-        super(WIDGET_ETHERPAD, "Notizen", "generic", "etherpad", "padName");
+        super(WIDGET_ETHERPAD, "Notes", "generic", "etherpad", "padName");
     }
 
     protected OnWidgetsDiscovered(widgets: EditableWidget[]): void {
