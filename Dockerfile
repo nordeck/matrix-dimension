@@ -29,6 +29,8 @@ RUN cd /home/node/matrix-dimension && \
 
 USER root
 
+RUN chmod 777 /docker-entrypoint.sh
+
 RUN apk del gcc make g++ && \
     rm /home/node/matrix-dimension/Dockerfile && \
     rm /home/node/matrix-dimension/docker-entrypoint.sh && \
@@ -43,5 +45,6 @@ ENV DIMENSION_DB_PATH=/data/dimension.db
 
 EXPOSE 8184
 #CMD ["/bin/sh"]
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
  
