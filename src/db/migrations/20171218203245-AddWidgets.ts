@@ -25,7 +25,7 @@ export default {
                 },
                 {
                     type: "etherpad",
-                    name: "Etherpad",
+                    name: "Notes",
                     avatarUrl: "/img/avatars/etherpad.png",
                     isEnabled: true,
                     isPublic: true,
