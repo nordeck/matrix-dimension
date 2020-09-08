@@ -24,8 +24,16 @@
 #    and best practices on handling the access key credentials.
 
 on:
-  release:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Changes description'
+        required: true
+        default: ''
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'dev'
 
 name: Deploy to Amazon ECS
 
