@@ -26,10 +26,6 @@
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Changes description'
-        required: true
-        default: ''
       environment:
         description: 'Deployment environment'
         required: true
