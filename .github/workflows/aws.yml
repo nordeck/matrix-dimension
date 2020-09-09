@@ -58,8 +58,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: phoenix-dimension
-        ENVIRONMENT: ${{ github.event.inputs.environment }}
-        IMAGE_TAG: $ENVIRONMENT-latest
+        IMAGE_TAG: ${{ github.event.inputs.environment }}-latest
       run: |
         # Build a docker container and
         # push it to ECR so that it can
@@ -72,7 +71,7 @@ jobs:
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: task-definition-$ENVIRONMENT.json
+        task-definition: task-definition-${{ github.event.inputs.environment }}.json
         container-name: phoenix-dimension
         image: ${{ steps.build-image.outputs.image }}
 
