@@ -3,7 +3,7 @@
     "networkMode": "host",
     "containerDefinitions": [
         {
-            "name": "phoenix-dimension, 
+            "name": "phoenix-dimension", 
             "image": "751489943657.dkr.ecr.eu-central-1.amazonaws.com/phoenix-dimension:test-latest",
             "logConfiguration": {
                 "logDriver": "awslogs",
