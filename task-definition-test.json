@@ -16,13 +16,13 @@
             },
             "portMappings": [
                 {
-                    "containerPort": 8400, 
-                    "hostPort": 8480, 
+                    "containerPort": 8184, 
+                    "hostPort": 8184, 
                     "protocol": "tcp"
                 },
                 {
                     "containerPort": 80,
-                    "hostPort": 8280,
+                    "hostPort": 8002,
                     "protocol": "tcp"
                 }
             ],
