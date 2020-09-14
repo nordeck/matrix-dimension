@@ -1,6 +1,6 @@
 {
     "family": "phoenix-dimension-task-test",
-    "networkMode": "host",
+    "networkMode": "bridge",
     "containerDefinitions": [
         {
             "name": "phoenix-dimension", 
