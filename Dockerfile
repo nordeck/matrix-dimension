@@ -34,9 +34,6 @@ RUN apk del gcc make g++ && \
     rm /home/node/matrix-dimension/docker-entrypoint.sh && \
     dos2unix /docker-entrypoint.sh
 
-RUN chmod 775 /data
-RUN chmod g+s /data
-
 USER node
 
 VOLUME ["/data"]
