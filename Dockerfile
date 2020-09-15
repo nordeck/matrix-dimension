@@ -12,7 +12,7 @@ RUN apk update && \
     mkdir /home/node/.npm-global && \
     mkdir -p /home/node/app 
 
-COPY docker-entrypoint-*.sh /
+COPY docker-entrypoint*.sh /
 COPY . /home/node/matrix-dimension
 
 
@@ -27,14 +27,14 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
 RUN cd /home/node/matrix-dimension && \
     npm install -D wd rimraf webpack webpack-command sqlite3 pg pg-hstore && \
-    NODE_ENV=${NODE_ENV} npm run-script build:web && npm run-script build:app
+    NODE_ENV=$NODE_ENV npm run-script build:web && npm run-script build:app
 
 USER root
 
 RUN apk del gcc make g++ && \
     rm /home/node/matrix-dimension/Dockerfile && \
-    rm /home/node/matrix-dimension/docker-entrypoint-${NODE_ENV}.sh && \
-    dos2unix /docker-entrypoint-${NODE_ENV}.sh
+    rm /home/node/matrix-dimension/docker-entrypoint-$NODE_ENV.sh && \
+    dos2unix /docker-entrypoint-$NODE_ENV.sh
 
 USER node
 
@@ -45,5 +45,4 @@ ENV DIMENSION_DB_PATH=/data/dimension.db
 
 EXPOSE 8184
 #CMD ["/bin/sh"]
-ENTRYPOINT docker-entrypoint-$NODE_ENV.sh
- 
+ENTRYPOINT /docker-entrypoint-$NODE_ENV.sh
