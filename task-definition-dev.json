@@ -45,7 +45,7 @@
                 "autoprovision": true,
                 "driver": "local",
                 "labels": {
-                    "database": "dimension_database"
+                    "database": "dimension-database"
                 }
             }
         }

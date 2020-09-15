@@ -1,7 +1,5 @@
 FROM node:10.16.0-alpine
 
-ENV NODE_ENV dev
-
 LABEL maintainer="Andreas Peters <support@aventer.biz>"
 #Upstream URL: https://git.aventer.biz/AVENTER/docker-matrix-dimension
 
@@ -10,9 +8,9 @@ RUN apk add dos2unix --no-cache --repository http://dl-3.alpinelinux.org/alpine/
 RUN apk update && \
     apk add --no-cache bash gcc python make g++ sqlite && \
     mkdir /home/node/.npm-global && \
-    mkdir -p /home/node/app 
+    mkdir -p /home/node/app
 
-COPY docker-entrypoint.sh /
+COPY ./docker-entrypoint.sh /
 COPY . /home/node/matrix-dimension
 
 
@@ -27,7 +25,7 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
 RUN cd /home/node/matrix-dimension && \
     npm install -D wd rimraf webpack webpack-command sqlite3 pg pg-hstore && \
-    NODE_ENV=$NODE_ENV npm run-script build:web && npm run-script build:app
+    NODE_ENV=production npm run-script build:web && npm run-script build:app
 
 USER root
 
@@ -45,7 +43,5 @@ ENV DIMENSION_DB_PATH=/data/dimension.db
 
 EXPOSE 8184
 #CMD ["/bin/sh"]
-#ENTRYPOINT /docker-entrypoint-$NODE_ENV.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD cd /home/node/matrix-dimension && \
-    NODE_ENV=$NODE_ENV node build/app/index.js
