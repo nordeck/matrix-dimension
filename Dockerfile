@@ -12,14 +12,13 @@ RUN apk update && \
     mkdir /home/node/.npm-global && \
     mkdir -p /home/node/app 
 
-COPY docker-entrypoint-$NODE_ENV.sh /
+COPY docker-entrypoint.sh /
 COPY . /home/node/matrix-dimension
 
 
 RUN chown -R node:node /home/node/app && \
     chown -R node:node /home/node/.npm-global && \
-    chown -R node:node /home/node/matrix-dimension && \
-    chown -R node:node /docker-entrypoint-$NODE_ENV.sh
+    chown -R node:node /home/node/matrix-dimension
 
 USER node
 
@@ -34,8 +33,8 @@ USER root
 
 RUN apk del gcc make g++ && \
     rm /home/node/matrix-dimension/Dockerfile && \
-    rm /home/node/matrix-dimension/docker-entrypoint-$NODE_ENV.sh && \
-    dos2unix /docker-entrypoint-$NODE_ENV.sh
+    rm /home/node/matrix-dimension/docker-entrypoint.sh && \
+    dos2unix /docker-entrypoint.sh
 
 USER node
 
@@ -48,4 +47,5 @@ EXPOSE 8184
 #CMD ["/bin/sh"]
 #ENTRYPOINT /docker-entrypoint-$NODE_ENV.sh
 
-CMD NODE_ENV=$NODE_ENV node /home/node/matrix-dimension/build/app/index.js
+CMD cd /home/node/matrix-dimension
+CMD NODE_ENV=$NODE_ENV node build/app/index.js
