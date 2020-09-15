@@ -12,15 +12,14 @@ RUN apk update && \
     mkdir /home/node/.npm-global && \
     mkdir -p /home/node/app 
 
-COPY docker-entrypoint*.sh /
+COPY docker-entrypoint-$NODE_ENV.sh /
 COPY . /home/node/matrix-dimension
 
 
 RUN chown -R node:node /home/node/app && \
     chown -R node:node /home/node/.npm-global && \
     chown -R node:node /home/node/matrix-dimension && \
-    chown -R node:node /docker-entrypoint-dev.sh && \
-    chown -R node:node /docker-entrypoint-test.sh
+    chown -R node:node /docker-entrypoint-$NODE_ENV.sh
 
 USER node
 
