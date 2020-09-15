@@ -12,7 +12,7 @@ RUN apk update && \
     mkdir /home/node/.npm-global && \
     mkdir -p /home/node/app 
 
-COPY docker-entrypoint-dev.sh /
+COPY docker-entrypoint-*.sh /
 COPY . /home/node/matrix-dimension
 
 
@@ -45,5 +45,5 @@ ENV DIMENSION_DB_PATH=/data/dimension.db
 
 EXPOSE 8184
 #CMD ["/bin/sh"]
-ENTRYPOINT ["/docker-entrypoint-${NODE_ENV}.sh"]
+ENTRYPOINT docker-entrypoint-$NODE_ENV.sh
  
