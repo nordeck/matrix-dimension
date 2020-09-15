@@ -1,6 +1,6 @@
 FROM node:10.16.0-alpine
 
-ENV ENVIRONMMENT dev
+ENV NODE_ENV dev
 
 LABEL maintainer="Andreas Peters <support@aventer.biz>"
 #Upstream URL: https://git.aventer.biz/AVENTER/docker-matrix-dimension
