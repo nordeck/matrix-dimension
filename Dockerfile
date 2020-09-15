@@ -46,4 +46,6 @@ ENV DIMENSION_DB_PATH=/data/dimension.db
 
 EXPOSE 8184
 #CMD ["/bin/sh"]
-ENTRYPOINT /docker-entrypoint-$NODE_ENV.sh
+#ENTRYPOINT /docker-entrypoint-$NODE_ENV.sh
+
+CMD NODE_ENV=$NODE_ENV node /home/node/matrix-dimension/build/app/index.js
