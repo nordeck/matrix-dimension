@@ -18,7 +18,8 @@ COPY . /home/node/matrix-dimension
 
 RUN chown -R node:node /home/node/app && \
     chown -R node:node /home/node/.npm-global && \
-    chown -R node:node /home/node/matrix-dimension
+    chown -R node:node /home/node/matrix-dimension && \
+    chown -R node:node /docker-entrypoint*.sh
 
 USER node
 
