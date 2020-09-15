@@ -47,5 +47,5 @@ EXPOSE 8184
 #CMD ["/bin/sh"]
 #ENTRYPOINT /docker-entrypoint-$NODE_ENV.sh
 
-CMD cd /home/node/matrix-dimension
-CMD NODE_ENV=$NODE_ENV node build/app/index.js
+CMD cd /home/node/matrix-dimension && \
+    NODE_ENV=$NODE_ENV node build/app/index.js
