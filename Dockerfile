@@ -36,7 +36,7 @@ RUN apk del gcc make g++ && \
     rm /home/node/matrix-dimension/docker-entrypoint.sh && \
     dos2unix /docker-entrypoint.sh
 
-USER node
+#USER node
 
 VOLUME ["/data"]
 
