@@ -36,8 +36,6 @@ RUN apk del gcc make g++ && \
     rm /home/node/matrix-dimension/docker-entrypoint.sh && \
     dos2unix /docker-entrypoint.sh
 
-#USER node
-
 VOLUME ["/data"]
 
 # Ensure the database doesn't get lost to the container
