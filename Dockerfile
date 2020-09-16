@@ -29,6 +29,8 @@ RUN cd /home/node/matrix-dimension && \
 
 USER root
 
+RUN chmod 777 /docker-entrypoint.sh
+
 RUN apk del gcc make g++ && \
     rm /home/node/matrix-dimension/Dockerfile && \
     rm /home/node/matrix-dimension/docker-entrypoint.sh && \
