@@ -28,9 +28,28 @@
                 }
             ],
             "essential": true,
-            "hostname": "phoenix-dimension-test"
+            "hostname": "phoenix-dimension-test",
+            "mountPoints": [
+                {
+                    "sourceVolume": "database",
+                    "containerPath": "/data"
+                }
+            ]
         }
-    ], 
+    ],
+    "volumes": [
+        {
+            "name": "database",
+            "dockerVolumeConfiguration" : {
+                "scope": "shared",
+                "autoprovision": true,
+                "driver": "local",
+                "labels": {
+                    "database": "dimension-database"
+                }
+            }
+        }
+    ],
     "requiresCompatibilities": ["EC2"],
     "cpu": "128",
     "memory": "256"
