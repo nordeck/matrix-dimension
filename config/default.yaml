@@ -8,11 +8,11 @@ web:
 homeserver:
   # The domain name of the homeserver. This is used in many places, such as with go-neb
   # setups, to identify the homeserver.
-  name: "t2bot.io"
+  name: "abcmatrix.nordeck.net"
 
   # The URL that Dimension, go-neb, and other services provisioned by Dimension should
   # use to access the homeserver with.
-  clientServerUrl: "https://t2bot.io"
+  clientServerUrl: "https://abcmatrix.nordeck.net"
 
   # The URL that Dimension should use when trying to communicate with federated APIs on
   # the homeserver. If not supplied or left empty Dimension will try to resolve the address
@@ -32,7 +32,7 @@ homeserver:
 # These users can modify the integrations this Dimension supports.
 # To access the admin interface, open Dimension in Element and click the settings icon.
 admins:
-  - "@someone:domain.com"
+  - "@wagner.wutzke:abcmatrix.nordeck.net"
 
 # IPs and CIDR ranges listed here will be blocked from being widgets.
 # Note: Widgets may still be embedded with restricted content, although not through Dimension directly.
