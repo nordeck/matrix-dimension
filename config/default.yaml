@@ -8,11 +8,11 @@ web:
 homeserver:
   # The domain name of the homeserver. This is used in many places, such as with go-neb
   # setups, to identify the homeserver.
-  name: "synapse.nordeck.net"
+  name: "dataport.modular.im"
 
   # The URL that Dimension, go-neb, and other services provisioned by Dimension should
   # use to access the homeserver with.
-  clientServerUrl: "https://synapse.nordeck.net"
+  clientServerUrl: "https://dataport.modular.im"
 
   # The URL that Dimension should use when trying to communicate with federated APIs on
   # the homeserver. If not supplied or left empty Dimension will try to resolve the address
@@ -27,12 +27,12 @@ homeserver:
   # for tracking custom sticker pack updates. This should be a user configured on the homeserver
   # and be dedicated to Dimension (create a user named "dimension" on your homeserver). For
   # information on how to acquire an access token, visit https://t2bot.io/docs/access_tokens
-  accessToken: "MDAyM2xvY2F0aW9uIGFiY21hdHJpeC5ub3JkZWNrLm5ldAowMDEzaWRlbnRpZmllciBrZXkKMDAxMGNpZCBnZW4gPSAxCjAwMzhjaWQgdXNlcl9pZCA9IEBkaW1lbnNpb24udXNlcjphYmNtYXRyaXgubm9yZGVjay5uZXQKMDAxNmNpZCB0eXBlID0gYWNjZXNzCjAwMjFjaWQgbm9uY2UgPSA0Y1hQY1lhVkgmWWprQTt1CjAwMmZzaWduYXR1cmUgZN2wWHb-wnUUM6lgQMqNKX8sSJ4PZWDRxofA6LS3EWAK"
+  accessToken: "MDAyMWxvY2F0aW9uIGRhdGFwb3J0Lm1vZHVsYXIuaW0KMDAxM2lkZW50aWZpZXIga2V5CjAwMTBjaWQgZ2VuID0gMQowMDJkY2lkIHVzZXJfaWQgPSBAa2Fkcmk6ZGF0YXBvcnQubW9kdWxhci5pbQowMDE2Y2lkIHR5cGUgPSBhY2Nlc3MKMDAyMWNpZCBub25jZSA9IFQyZCs4bHhAaEozQ2lxVnoKMDAyZnNpZ25hdHVyZSBcULKCTQhZxQfYhl9TNvNsbpMV6l7Q-Nip0eNCC6LM-wo"
 
 # These users can modify the integrations this Dimension supports.
 # To access the admin interface, open Dimension in Element and click the settings icon.
 admins:
-  - "@wagner.wutzke:abcmatrix.nordeck.net"
+  - "@kadri:dataport.modular.im"
 
 # IPs and CIDR ranges listed here will be blocked from being widgets.
 # Note: Widgets may still be embedded with restricted content, although not through Dimension directly.
@@ -89,7 +89,7 @@ stickers:
 dimension:
   # This is where Dimension is accessible from clients. Be sure to set this
   # to your own Dimension instance.
-  publicUrl: "https://ec2-54-93-106-62.eu-central-1.compute.amazonaws.com:8184"
+  publicUrl: "https://dimension.example.org"
 
 # Settings for controlling how logging works
 logging:
