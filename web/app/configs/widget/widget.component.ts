@@ -114,6 +114,18 @@ export class WidgetComponent implements OnInit {
         widget.name = widget.dimension.newName || this.defaultName;
         widget.data = widget.dimension.newData || {};
         widget.data.url = widget.dimension.newUrl;
+
+        // TODO: Changes for authentication
+        if (!widget.dimension.newUrl.includes("?")) {
+            widget.dimension.newUrl += "?";
+        }
+        if (!widget.dimension.newUrl.includes("roomId")) {
+            widget.dimension.newUrl += "&roomId=$matrix_room_id";
+        }
+        if (!widget.dimension.newUrl.includes("userId")) {
+            widget.dimension.newUrl += "&userId=$matrix_user_id";
+        }
+
         widget.url = this.wrapUrl(widget.dimension.newUrl, Object.keys(widget.data).map(k => "$" + k));
         widget.type = this.widgetTypes[0]; // always set the type to be the latest type
 
@@ -221,7 +233,6 @@ export class WidgetComponent implements OnInit {
         for (const key of customVars) {
             encodedURL = encodedURL.replace(encodeURIComponent(key), key);
         }
-
         return encodedURL;
     }
 
@@ -238,6 +249,7 @@ export class WidgetComponent implements OnInit {
 
         result = result.replace("$matrix_room_id", SessionStorage.roomId);
         result = result.replace("$matrix_user_id", SessionStorage.userId);
+
         // result = result.replace("$matrix_display_name", "NOT SUPPORTED");
         // result = result.replace("$matrix_avatar_url", "NOT SUPPORTED");
 
