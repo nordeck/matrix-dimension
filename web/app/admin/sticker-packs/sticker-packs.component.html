@@ -35,8 +35,8 @@
                     <td colspan="5"><i>{{'No sticker packs installed.' | translate}}</i></td>
                 </tr>
                 <tr *ngFor="let pack of packs trackById">
-                    <td>{{ pack.displayName }}</td>
-                    <td>{{ pack.description }}</td>
+                    <td>{{ pack.displayName | translate}}</td>
+                    <td>{{ pack.description | translate }}</td>
 
                     <td *ngIf="pack.author.type !== 'none'">
                         <a [href]="pack.author.reference" target="_blank">{{ pack.author.name }}</a>

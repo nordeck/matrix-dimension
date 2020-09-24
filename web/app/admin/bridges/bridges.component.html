@@ -21,8 +21,8 @@
                     <td colspan="3"><i>{{'No bridges.' | translate}}</i></td>
                 </tr>
                 <tr *ngFor="let bridge of bridges trackById">
-                    <td>{{ bridge.displayName }}</td>
-                    <td>{{ bridge.description }}</td>
+                    <td>{{ bridge.displayName | translate }}</td>
+                    <td>{{ bridge.description | translate }}</td>
                     <td class="text-center">
                         <span class="editButton" [routerLink]="[bridge.type]" title="edit">
                             <i class="fa fa-pencil-alt"></i>

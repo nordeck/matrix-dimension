@@ -4,7 +4,7 @@
 <div *ngIf="!widgetComponent.isLoading">
     <my-ibox [isCollapsible]="true" [defaultCollapsed]="widgetComponent.defaultExpandedWidgetId">
         <h5 class="my-ibox-title">
-            <i class="far fa-plus-square"></i>  {{ widgetComponent.defaultName }} {{'Add' | translate}}
+            <i class="far fa-plus-square"></i>  {{ widgetComponent.defaultName | translate }} {{'Add' | translate}}
         </h5>
         <div class="my-ibox-content">
             <form (submit)="widgetComponent.addWidget()" novalidate name="addForm">

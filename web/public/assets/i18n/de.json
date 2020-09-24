@@ -556,6 +556,27 @@
 "Youtube Video Widgets":"Youtube Video Widgets",
 "The person selected here will be asked to approve or deny the bridge request.": "Die hier ausgewählte Person wird gebeten, die Brückenanforderung zu genehmigen oder abzulehnen.",
 "Created by": "Erstellt von",
-  "under": "unter"
+"under": "unter",
+  "A webpage embedded in the room.": "Eine Web-Seite in dem Raum eingebettet.",
+  "Collaborate on documents with members of your room.": "Zusammenarbeit an Dokumenten mit den Mitgliedern Ihres Raum.",
+  "Share upcoming events in your room with a Google Calendar.": "Teilen Sie bevorstehende Ereignisse in Ihrem Raum mit einem Google Kalender.",
+  "Embed a Twitch livestream into your room.": "Betten Sie einen Twitch-Livestream in Ihr Raum ein.",
+  "Monitor your favourite cryptocurrencies": "Überwachen Sie Ihre Lieblings cryptocurrencies",
+  "Collaborate on and share documents using Google Docs.": "Zusammenarbeit und teilen an Dokumenten mit Google Docs.",
+  "Hold a video conference with Jitsi Meet": "Halten Sie eine Videokonferenz mit Jitsi Meet ab.",
+  "Share music with the room": "Teile Musik mit dem Raum",
+  "A whiteboard app embedded in the room.": "Ein Whiteboard-App in dem Raum eingebettet.",
+  "Embed a YouTube, Vimeo, or DailyMotion video in your room.": "Betten Sie ein YouTube-, Vimeo- oder DailyMotion-Video in Ihr Raum ein.",
+  "Embed a graph in the room": "Betten Sie eine Grafik in den Raum ein.",
+  "Jitsi Conference": "Jitsi Konferenz",
+  "Bridges IRC channels to rooms, supporting multiple networks": "Überbrückt IRC-Kanäle mit Räumen und unterstützt mehrere Netzwerke",
+  "Bridges Telegram chats and channels to rooms on Matrix": "Überbrückt Telegramm-Chats und Kanäle zu Räumen auf Matrix",
+  "Slack-compatible webhooks for your room": "Slack-kompatible Webhooks für Ihr Raum",
+  "Bridges Gitter rooms to Matrix": "Überbrückt Gitter zu Räumen auf Matrix",
+  "Bridges Slack channels to Matrix": "Überbrückt Slack Kanäle auf Matrix",
+  "The most photogenic animal on the planet.": "Das fotogenste Tier der Welt.",
+  "Cute cats": "Süße katzen",
+  "Cute cat faces": "Süße Katze Gesichter",
+  "The official Loading Artist sticker pack!": "Das offizielle Loading Artist Sticker Pack!"
 }
 

@@ -16,8 +16,8 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let widget of widgets trackById">
-                    <td>{{ widget.displayName }}</td>
-                    <td>{{ widget.description }}</td>
+                    <td>{{ widget.displayName | translate }}</td>
+                    <td>{{ widget.description | translate }}</td>
                     <td class="text-right">
                         <span class="editButton" (click)="editWidget(widget)"
                               *ngIf="widget.isEnabled && hasConfiguration(widget)">
