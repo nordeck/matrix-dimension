@@ -9,6 +9,7 @@ import { AdminGitterApiService } from "../../../shared/services/admin/admin-gitt
 import { FE_GitterBridge } from "../../../shared/models/gitter";
 import { FE_Upstream } from "../../../shared/models/admin-responses";
 import { AdminUpstreamApiService } from "../../../shared/services/admin/admin-upstream-api.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     templateUrl: "./gitter.component.html",
@@ -25,7 +26,8 @@ export class AdminGitterBridgeComponent implements OnInit {
     constructor(private gitterApi: AdminGitterApiService,
                 private upstreamApi: AdminUpstreamApiService,
                 private toaster: ToasterService,
-                private modal: Modal) {
+                private modal: Modal,
+                public translate: TranslateService) {
     }
 
     public ngOnInit() {
@@ -38,7 +40,9 @@ export class AdminGitterBridgeComponent implements OnInit {
             this.configurations = await this.gitterApi.getBridges();
         } catch (err) {
             console.error(err);
-            this.toaster.pop("error", "Error loading bridges");
+            let errorMassage: string;
+            this.translate.get('Error loading bridges').subscribe((res: string) => {errorMassage = res});
+            this.toaster.pop("error", errorMassage);
         }
     }
 
@@ -48,12 +52,16 @@ export class AdminGitterBridgeComponent implements OnInit {
         const createBridge = (upstream: FE_Upstream) => {
             return this.gitterApi.newFromUpstream(upstream).then(bridge => {
                 this.configurations.push(bridge);
-                this.toaster.pop("success", "matrix.org's Gitter bridge added");
+                let errorMassage: string;
+                this.translate.get('matrix.org\'s Gitter bridge added').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("success", errorMassage);
                 this.isUpdating = false;
             }).catch(err => {
                 console.error(err);
                 this.isUpdating = false;
-                this.toaster.pop("error", "Error adding matrix.org's Gitter Bridge");
+                let errorMassage: string;
+                this.translate.get('Error adding matrix.org\'s Gitter Bridge').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("error", errorMassage);
             });
         };
 
@@ -66,7 +74,9 @@ export class AdminGitterBridgeComponent implements OnInit {
                 createBridge(upstream);
             }).catch(err => {
                 console.error(err);
-                this.toaster.pop("error", "Error creating matrix.org's Gitter Bridge");
+                let errorMassage: string;
+                this.translate.get('Error creating matrix.org\'s Gitter Bridge').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("error", errorMassage);
             });
         } else createBridge(vectorUpstreams[0]);
     }
@@ -80,7 +90,9 @@ export class AdminGitterBridgeComponent implements OnInit {
         }, ManageSelfhostedGitterBridgeDialogContext)).result.then(() => {
             this.reload().catch(err => {
                 console.error(err);
-                this.toaster.pop("error", "Failed to get an update Gitter bridge list");
+                let errorMassage: string;
+                this.translate.get('Failed to get an update Gitter bridge list').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("error", errorMassage);
             });
         });
     }
@@ -95,7 +107,9 @@ export class AdminGitterBridgeComponent implements OnInit {
         }, ManageSelfhostedGitterBridgeDialogContext)).result.then(() => {
             this.reload().catch(err => {
                 console.error(err);
-                this.toaster.pop("error", "Failed to get an update Gitter bridge list");
+                let errorMassage: string;
+                this.translate.get('Failed to get an update Gitter bridge list').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("error", errorMassage);
             });
         });
     }
