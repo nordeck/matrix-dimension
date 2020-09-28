@@ -2,8 +2,8 @@
 "$padName and $roomId will be replaced during creation to help create a unique pad URL.":"'$padName' und '$roomId' werden während der Erstellung ersetzt, um eine eindeutige Pad-URL zu erstellen.",
 ".travis.yml configuration and template information":".travis.yml Konfigurations- und Vorlageninformationen",
 "languages[code].langName version":"languages[code].langName Version",
-"this.bot.displayName was invited to the room":"this.bot.displayName wurde in den Raum eingeladen",
-"this.bot.displayName was removed from the room":"this.bot.displayName wurde auf dem Raum entfernt",
+"was invited to the room":" wurde in den Raum eingeladen",
+"was removed from the room":" wurde auf dem Raum entfernt",
 "is a multi-purpose bot that can provide various services, such as reaction GIFs and Github notifications. There are two options for go-neb support in Dimension: using matrix.org's or self-hosting it. Each go-neb instance can have multiple services associated with it (ie: one go-neb here can do everything).":"ist ein Mehrzweck-Bot, der verschiedene Dienste wie Reaktions-GIFs und Github-Benachrichtigungen bereitstellen kann. Es gibt zwei Optionen für die Unterstützung von Go-NEB in Dimension: verwenden von matrix.org oder Selbsthosting. Jeder Go-NEB-Instanz können mehrere Dienste zugeordnet sein (D.h.: ein Go-NEB kann hier alles ausführen).",
 "matrix-appservice-gitter":"matrix-appservice-gitter",
 "is a Gitter bridge that supports bridging Gitter rooms to Matrix. Users on Matrix are represented as a single bot user in Gitter, however Gitter users are represented as real-looking Matrix users in the room.": "ist eine Gitter-Bridge, die eine Verbindung von Gitter-Räumen mit Matrix unterstützt. Matrix-Nutzer werden in Gitter als einzelne Bot-Benutzer dargestellt, Gitter-Nutzer werden jedoch als real aussehende Matrix-Nutzer im Raum dargestellt.",
@@ -184,6 +184,7 @@
 "Etherpad Widget Configuration":"Etherpad Widget Konfiguration",
 "Everyone has been logged out":"Alle Nutzer wurden ausgeloggt",
 "Expected to not be able to send specific event types":"Es wird erwartet, dass bestimmte Ereignistypen nicht gesendet werden können",
+"Expected to be able to send specific event types":"Es wird erwartet, dass bestimmte Ereignistypen gesendet werden können",
 "Failed to configure the integration":"Die Integration konnte nicht konfiguriert werden",
 "Failed to create Gitter bridge":"Die Gitter-Bridge konnte nicht angelegt werden",
 "Failed to create IRC bridge":"Die IRC-Bridge konnte nicht angelegt werden",
@@ -355,7 +356,8 @@
 "Repositories":"Repositorys",
 "Repository Template":"Repository-Vorlage",
 "Request Bridge":"Bridge anfordern",
-"Requirement 'requirement.condition' not found":"Anforderung 'requirement.condition' nicht erfüllt",
+"Requirement":"Anforderung ",
+"not found": " nicht erfüllt",
 "RSS Bot Configuration":"RSS Bot Konfiguration",
 "RSS Notifications":"RSS Nachrichten",
 "Save":"Speichern",
@@ -435,8 +437,8 @@
 "The provisioning URL for the bridge. This is usually the same as the URL given in the registration. This API is not authenticated and should be treated with caution.":"Die Provisioning-URL für die Bridge. Dies entspricht normalerweise der in der Registrierung angegebenen URL. Diese API ist nicht authentifiziert und sollte mit Vorsicht behandelt werden.",
 "The provisioning URL for the bridge. This is usually the same as the URL your homeserver uses to communicate with the bridge.":"Die Provisioning-URL für die Bridge. Dies entspricht normalerweise der URL, die Ihr Home-Server für die Kommunikation mit der Bridge verwendet.",
 "The public URL for the bridge.":"Öffentliche URL für die Bridge",
-"The room must be non-public to use this integration":"Der Raum darf nicht öffentlich sein, damit diese Integration genutzt werden kann",
-"The room must be public to use this integration":"Der Raum muss öffentlich sein, damit diese Integration genutzt werden kann",
+"The room must be":"Der Raum muss",
+"to use this integration":"sein, damit diese Integration genutzt werden kann",
 "The search engine ID":"Die Search-Engine-ID",
 "The shared secret defined in the configuration for provisioning.":"Das in der Konfiguration für Provisioning definierte Shared Secret.",
 "The Telegram bot has not been invited to the chat":"Der Telegram-Bot ist nicht zu diesem Chat eingeladen",
@@ -578,6 +580,7 @@
   "Cute cats": "Süße katzen",
   "Cute cat faces": "Süße Katze Gesichter",
   "The official Loading Artist sticker pack!": "Das offizielle Loading Artist Sticker Pack!",
-  "disabled": "deaktiviert"
+  "disabled": "deaktiviert",
+  "Please enter a feed URL": "Bitte geben Sie eine Feed-URL ein"
 }
 

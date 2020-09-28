@@ -18,6 +18,7 @@ export class PageHeaderComponent {
             while (currentRoute.children.length > 0) {
                 let children = currentRoute.children;
                 children.forEach(route => {
+                    console.log('ROUTER', route);
                     currentRoute = route;
                     url += "/" + route.snapshot.url.map(s => s.path).join("/");
                     if (route.outlet !== PRIMARY_OUTLET) return;
