@@ -1,23 +1,23 @@
 {
-    "family": "phoenix-dimension-task-test",
+    "family": "nic-rooms-dimension-test",
     "networkMode": "bridge",
     "containerDefinitions": [
         {
-            "name": "phoenix-dimension", 
-            "image": "751489943657.dkr.ecr.eu-central-1.amazonaws.com/phoenix-dimension:test-latest",
+            "name": "nic-rooms-dimension",
+            "image": "751489943657.dkr.ecr.eu-central-1.amazonaws.com/nic-rooms-dimension:test-latest",
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "secretOptions": null,
                 "options": {
-                    "awslogs-group": "/ecs/phoenix-dimension-task-test",
+                    "awslogs-group": "/ecs/nic-rooms-dimension-task-test",
                     "awslogs-region": "eu-central-1",
                     "awslogs-stream-prefix": "ecs"
                 }
             },
             "portMappings": [
                 {
-                    "containerPort": 8184, 
-                    "hostPort": 8184, 
+                    "containerPort": 8184,
+                    "hostPort": 8184,
                     "protocol": "tcp"
                 }
             ],
@@ -28,7 +28,7 @@
                 }
             ],
             "essential": true,
-            "hostname": "phoenix-dimension-test",
+            "hostname": "nic-rooms-dimension-test",
             "mountPoints": [
                 {
                     "sourceVolume": "database",
