@@ -72,12 +72,12 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition-${{ github.event.inputs.environment }}.json
-        container-name: nic-dimension-${{ github.event.inputs.environment }}
+        container-name: nic-rooms-dimension-${{ github.event.inputs.environment }}
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: nic-dimension-service
+        service: nic-rooms-dimension-service
         cluster: nic-rooms-${{ github.event.inputs.environment }}
