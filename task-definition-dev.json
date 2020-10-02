@@ -3,7 +3,7 @@
     "networkMode": "bridge",
     "containerDefinitions": [
         {
-            "name": "nic-rooms-dimension",
+            "name": "nic-rooms-dimension-dev",
             "image": "751489943657.dkr.ecr.eu-central-1.amazonaws.com/nic-rooms-dimension:dev-latest",
             "logConfiguration": {
                 "logDriver": "awslogs",
