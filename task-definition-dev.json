@@ -3,7 +3,7 @@
     "networkMode": "bridge",
     "containerDefinitions": [
         {
-            "name": "phoenix-dimension", 
+            "name": "phoenix-dimension",
             "image": "751489943657.dkr.ecr.eu-central-1.amazonaws.com/phoenix-dimension:dev-latest",
             "logConfiguration": {
                 "logDriver": "awslogs",
@@ -16,9 +16,14 @@
             },
             "portMappings": [
                 {
-                    "containerPort": 8184, 
-                    "hostPort": 8184, 
+                    "containerPort": 8184,
+                    "hostPort": 8184,
                     "protocol": "tcp"
+                },
+                {
+                    "containerPort": 8443,
+                    "hostPort": 8443,
+                    "protocol": "https"
                 }
             ],
             "environment": [

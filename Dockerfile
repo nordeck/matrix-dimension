@@ -13,7 +13,6 @@ RUN apk update && \
 COPY ./docker-entrypoint.sh /
 COPY . /home/node/matrix-dimension
 
-
 RUN chown -R node:node /home/node/app && \
     chown -R node:node /home/node/.npm-global && \
     chown -R node:node /home/node/matrix-dimension
@@ -44,4 +43,3 @@ ENV DIMENSION_DB_PATH=/data/dimension.db
 EXPOSE 8184
 #CMD ["/bin/sh"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
-
