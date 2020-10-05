@@ -1,15 +1,15 @@
 {
-    "family": "nic-rooms-dimension-test",
+    "family": "nic-rooms-dimension-stage",
     "networkMode": "bridge",
     "containerDefinitions": [
         {
             "name": "nic-rooms-dimension",
-            "image": "751489943657.dkr.ecr.eu-central-1.amazonaws.com/nic-rooms-dimension:test-latest",
+            "image": "751489943657.dkr.ecr.eu-central-1.amazonaws.com/nic-rooms-dimension:stage-latest",
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "secretOptions": null,
                 "options": {
-                    "awslogs-group": "/ecs/nic-rooms-dimension-task-test",
+                    "awslogs-group": "/ecs/nic-rooms-dimension-stage",
                     "awslogs-region": "eu-central-1",
                     "awslogs-stream-prefix": "ecs"
                 }
@@ -28,7 +28,7 @@
                 }
             ],
             "essential": true,
-            "hostname": "nic-rooms-dimension-test",
+            "hostname": "nic-rooms-dimension-stage",
             "mountPoints": [
                 {
                     "sourceVolume": "database",
@@ -45,7 +45,7 @@
                 "autoprovision": true,
                 "driver": "local",
                 "labels": {
-                    "database": "dimension-database"
+                    "database": "dimension-database-stage"
                 }
             }
         }
