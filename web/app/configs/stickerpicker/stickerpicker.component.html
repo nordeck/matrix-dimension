@@ -33,8 +33,8 @@
                     <ui-switch [checked]="pack.isSelected" size="medium" [disabled]="isUpdating"
                                (change)="toggleSelected(pack)" class="toggle-switch"></ui-switch>
 
-                    <span class="name">{{ pack.displayName }}</span>
-                    <span class="description">{{ pack.description }}</span>
+                    <span class="name">{{ pack.displayName | translate}}</span>
+                    <span class="description">{{ pack.description | translate}}</span>
 
                     <span class="author" *ngIf="pack.author.type !== 'none'">{{'Created by' | translate}} <a
                             [href]="pack.author.reference">{{ pack.author.name }}</a> {{'under' | translate}} </span>
