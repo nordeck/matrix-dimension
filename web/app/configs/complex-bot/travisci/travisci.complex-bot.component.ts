@@ -1,6 +1,7 @@
 import { ComplexBotComponent } from "../complex-bot.component";
 import { Component } from "@angular/core";
 import { SessionStorage } from "../../../shared/SessionStorage";
+import { TranslateService } from "@ngx-translate/core";
 
 interface TravisCiConfig {
     webhookId: string;
@@ -27,7 +28,7 @@ export class TravisCiComplexBotConfigComponent extends ComplexBotComponent<Travi
 
     public newRepoKey = "";
 
-    constructor() {
+    constructor(public translate?: TranslateService) {
         super("travisci");
     }
 
@@ -50,7 +51,9 @@ export class TravisCiComplexBotConfigComponent extends ComplexBotComponent<Travi
 
     public addRepo(): void {
         if (!this.newRepoKey.trim()) {
-            this.toaster.pop('warning', 'Please enter a repository');
+            let message: string;
+            this.translate.get('Please enter a repository').subscribe((res: string) => {message = res});
+            this.toaster.pop('warning', message);
             return;
         }
 
