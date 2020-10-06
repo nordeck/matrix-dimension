@@ -14,7 +14,7 @@
                        [disabled]="isUpdating"/>
             </label>
             <label class="label-block">
-                Policy text
+                {{'Policy text' | translate}}
                 <span class="text-muted">{{'This is where you put your policy\'s content.' | translate}}</span>
             </label>
             <ckeditor [editor]="Editor" [(ngModel)]="languages[code].text" [disabled]="isUpdating"></ckeditor>
