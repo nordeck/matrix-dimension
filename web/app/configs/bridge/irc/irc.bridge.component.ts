@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { BridgeComponent } from "../bridge.component";
 import { FE_IrcBridgeAvailableNetworks } from "../../../shared/models/irc";
 import { IrcApiService } from "../../../shared/services/integrations/irc-api.service";
+import { TranslateService } from "@ngx-translate/core";
 
 interface IrcConfig {
     availableNetworks: FE_IrcBridgeAvailableNetworks;
@@ -34,7 +35,7 @@ export class IrcBridgeConfigComponent extends BridgeComponent<IrcConfig> {
     public op: string;
     public pending: LocalChannel[] = [];
 
-    constructor(private irc: IrcApiService) {
+    constructor(private irc: IrcApiService, public translate: TranslateService) {
         super("irc");
     }
 
@@ -55,7 +56,9 @@ export class IrcBridgeConfigComponent extends BridgeComponent<IrcConfig> {
 
     public loadOps() {
         if (!this.channel.trim()) {
-            this.toaster.pop("warning", "Please enter a channel name");
+            let message: string;
+            this.translate.get('Please enter a channel name').subscribe((res: string) => {message = res});
+            this.toaster.pop("warning", message);
             return;
         }
 
@@ -68,7 +71,9 @@ export class IrcBridgeConfigComponent extends BridgeComponent<IrcConfig> {
         }).catch(err => {
             console.error(err);
             this.loadingOps = false;
-            this.toaster.pop("error", "Error loading channel operators");
+            let message: string;
+            this.translate.get('Error loading channel operators').subscribe((res: string) => {message = res});
+            this.toaster.pop("error", message);
         });
     }
 
@@ -86,7 +91,11 @@ export class IrcBridgeConfigComponent extends BridgeComponent<IrcConfig> {
         } catch (err) {
             console.error(err);
             this.requestingBridge = false;
-            this.toaster.pop("error", "Failed to make the bridge an administrator", "Please ensure you are an 'Admin' for the room");
+            let message: string;
+            let message1: string;
+            this.translate.get('Failed to make the bridge an administrator').subscribe((res: string) => {message = res});
+            this.translate.get('Please ensure you are an \'Admin\' for the room').subscribe((res: string) => {message1 = res});
+            this.toaster.pop("error", message, message1);
             return;
         }
 
@@ -99,11 +108,17 @@ export class IrcBridgeConfigComponent extends BridgeComponent<IrcConfig> {
                 pending: true,
             });
             this.resetForm();
-            this.toaster.pop("success", "Link requested!", "The operator selected will have to approve the bridge for it to work");
+            let message: string;
+            let message1: string;
+            this.translate.get('Link requested!').subscribe((res: string) => {message = res});
+            this.translate.get('The operator selected will have to approve the bridge for it to work').subscribe((res: string) => {message1 = res});
+            this.toaster.pop("success", message, message1);
         }).catch(err => {
             console.error(err);
             this.requestingBridge = false;
-            this.toaster.pop("error", "Failed to request a link");
+            let message: string;
+            this.translate.get('Failed to request a link').subscribe((res: string) => {message = res});
+            this.toaster.pop("error", message);
         });
     }
 
@@ -133,10 +148,14 @@ export class IrcBridgeConfigComponent extends BridgeComponent<IrcConfig> {
             this.isUpdating = false;
             const idx = this.bridge.config.links[channel.networkId].findIndex(c => c.channelName === channel.name);
             if (idx !== -1) this.bridge.config.links[channel.networkId].splice(idx, 1);
-            this.toaster.pop("success", "Link removed");
+            let message: string;
+            this.translate.get('Link removed').subscribe((res: string) => {message = res});
+            this.toaster.pop("success", message);
         }).catch(err => {
             console.error(err);
-            this.toaster.pop("error", "Failed to remove link");
+            let message: string;
+            this.translate.get('Failed to remove link').subscribe((res: string) => {message = res});
+            this.toaster.pop("error", message);
         });
     }
 }

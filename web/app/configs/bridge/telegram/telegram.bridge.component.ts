@@ -8,6 +8,7 @@ import {
     CannotUnbridgeDialogContext,
     TelegramCannotUnbridgeComponent
 } from "./cannot-unbridge/cannot-unbridge.component";
+import { TranslateService } from "@ngx-translate/core";
 
 interface TelegramConfig {
     puppet: {
@@ -39,7 +40,7 @@ export class TelegramBridgeConfigComponent extends BridgeComponent<TelegramConfi
 
     public isUpdating: boolean;
 
-    constructor(private telegram: TelegramApiService, private modal: Modal) {
+    constructor(private telegram: TelegramApiService, private modal: Modal, public translate: TranslateService) {
         super("telegram");
     }
 
@@ -103,19 +104,23 @@ export class TelegramBridgeConfigComponent extends BridgeComponent<TelegramConfi
             this.bridge.config.portalInfo = portalInfo;
             this.bridge.config.linked = [portalInfo.chatId];
             this.isUpdating = false;
-            this.toaster.pop("success", "Bridge updated");
+            let message: string;
+            this.translate.get('Bridge updated').subscribe((res: string) => {message = res});
+            this.toaster.pop("success", message);
         }).catch(error => {
             this.isUpdating = false;
             console.error(error);
 
             const body = error.json ? error.json() : null;
-            let message = "Error bridging room";
+            let message: string;
+            this.translate.get('Error bridging room').subscribe((res: string) => {message = res});
             if (body) {
-                if (body["dim_errcode"] === "CHAT_ALREADY_BRIDGED") message = "That Telegram chat is already bridged to another room";
-                if (body["dim_errcode"] === "ROOM_ALREADY_BRIDGED") message = "This room is already bridged to a Telegram chat";
-                if (body["dim_errcode"] === "BOT_NOT_IN_CHAT") message = "The Telegram bot has not been invited to the chat";
-                if (body["dim_errcode"] === "NOT_ENOUGH_PERMISSIONS") message = "You do not have permission to bridge that chat";
-            }
+                if (body["dim_errcode"] === "CHAT_ALREADY_BRIDGED"){
+                    this.translate.get('That Telegram chat is already bridged to another room').subscribe((res: string) => {message = res}); }
+                if (body["dim_errcode"] === "ROOM_ALREADY_BRIDGED") {
+                    this.translate.get('This room is already bridged to a Telegram chat').subscribe((res: string) => {message = res}); }
+                if (body["dim_errcode"] === "BOT_NOT_IN_CHAT") {this.translate.get('The Telegram bot has not been invited to the chat').subscribe((res: string) => {message = res}); }
+                if (body["dim_errcode"] === "NOT_ENOUGH_PERMISSIONS") {this.translate.get('You do not have permission to bridge that chat').subscribe((res: string) => {message = res}); }}
             this.toaster.pop("error", message);
         });
     }
@@ -126,16 +131,19 @@ export class TelegramBridgeConfigComponent extends BridgeComponent<TelegramConfi
             this.bridge.config.portalInfo = portalInfo;
             this.bridge.config.linked = [];
             this.isUpdating = false;
-            this.toaster.pop("success", "Bridge removed");
+            let message: string;
+            this.translate.get('Bridge removed').subscribe((res: string) => {message = res});
+            this.toaster.pop("success", message);
         }).catch(error => {
             this.isUpdating = false;
             console.error(error);
 
             const body = error.json ? error.json() : null;
-            let message = "Error removing bridge";
+            let message: string;
+            this.translate.get('Error removing bridge').subscribe((res: string) => {message = res});
             if (body) {
-                if (body["dim_errcode"] === "BOT_NOT_IN_CHAT") message = "The Telegram bot has not been invited to the chat";
-                if (body["dim_errcode"] === "NOT_ENOUGH_PERMISSIONS") message = "You do not have permission to unbridge that chat";
+                if (body["dim_errcode"] === "BOT_NOT_IN_CHAT") {this.translate.get('The Telegram bot has not been invited to the chat').subscribe((res: string) => {message = res}); }
+                if (body["dim_errcode"] === "NOT_ENOUGH_PERMISSIONS") {this.translate.get('You do not have permission to unbridge that chat').subscribe((res: string) => {message = res}); }
             }
             this.toaster.pop("error", message);
         });

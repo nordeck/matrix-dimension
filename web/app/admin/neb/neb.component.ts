@@ -10,6 +10,7 @@ import {
     AppserviceConfigDialogContext
 } from "./appservice-config/appservice-config.component";
 import { Modal, overlayConfigFactory } from "ngx-modialog";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     templateUrl: "./neb.component.html",
@@ -30,11 +31,14 @@ export class AdminNebComponent {
                 private toaster: ToasterService,
                 private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private modal: Modal) {
+                private modal: Modal,
+                public translate: TranslateService) {
 
         this.reload().then(() => this.isLoading = false).catch(error => {
             console.error(error);
-            this.toaster.pop("error", "Error loading go-neb configuration");
+            let errorMassage: string;
+            this.translate.get('Error loading go-neb configuration').subscribe((res: string) => {errorMassage = res});
+            this.toaster.pop("error", errorMassage);
         });
     }
 
@@ -97,13 +101,19 @@ export class AdminNebComponent {
         const createNeb = (upstream: FE_Upstream) => {
             return this.nebApi.newUpstreamConfiguration(upstream).then(neb => {
                 this.configurations.push(neb);
-                this.toaster.pop("success", "matrix.org's go-neb added", "Click the pencil icon to enable the bots.");
+                let errorMassage: string;
+                let errorMassage1: string;
+                this.translate.get('matrix.org\'s go-neb added').subscribe((res: string) => {errorMassage = res});
+                this.translate.get('Click the pencil icon to enable the bots.').subscribe((res: string) => {errorMassage1 = res});
+                this.toaster.pop("success", errorMassage, errorMassage1);
                 this.isAddingModularNeb = false;
                 this.hasModularNeb = true;
             }).catch(error => {
                 console.error(error);
                 this.isAddingModularNeb = false;
-                this.toaster.pop("error", "Error adding matrix.org's go-neb");
+                let errorMassage: string;
+                this.translate.get('Error adding matrix.org\'s go-neb').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("error", errorMassage);
             });
         };
 
@@ -116,7 +126,9 @@ export class AdminNebComponent {
                 createNeb(upstream);
             }).catch(err => {
                 console.error(err);
-                this.toaster.pop("error", "Error creating matrix.org go-neb");
+                let errorMassage: string;
+                this.translate.get('Error creating matrix.org go-neb').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("error", errorMassage);
             });
         } else createNeb(vectorUpstreams[0]);
     }

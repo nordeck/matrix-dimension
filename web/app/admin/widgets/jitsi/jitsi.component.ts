@@ -4,6 +4,7 @@ import { ToasterService } from "angular2-toaster";
 import { DialogRef, ModalComponent } from "ngx-modialog";
 import { WidgetConfigDialogContext } from "../widgets.component";
 import { AdminIntegrationsApiService } from "../../../shared/services/admin/admin-integrations-api.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     templateUrl: "./jitsi.component.html",
@@ -15,7 +16,7 @@ export class AdminWidgetJitsiConfigComponent implements ModalComponent<WidgetCon
     public widget: FE_JitsiWidget;
     private originalWidget: FE_JitsiWidget;
 
-    constructor(public dialog: DialogRef<WidgetConfigDialogContext>, private adminIntegrationsApi: AdminIntegrationsApiService, private toaster: ToasterService) {
+    constructor(public dialog: DialogRef<WidgetConfigDialogContext>, private adminIntegrationsApi: AdminIntegrationsApiService, private toaster: ToasterService, public translate: TranslateService) {
         this.originalWidget = dialog.context.widget;
         this.widget = JSON.parse(JSON.stringify(this.originalWidget));
 
@@ -27,12 +28,16 @@ export class AdminWidgetJitsiConfigComponent implements ModalComponent<WidgetCon
         this.isUpdating = true;
         this.adminIntegrationsApi.setIntegrationOptions(this.widget.category, this.widget.type, this.widget.options).then(() => {
             this.originalWidget.options = this.widget.options;
-            this.toaster.pop("success", "Widget updated");
+            let errorMassage: string;
+            this.translate.get('Widget updated').subscribe((res: string) => {errorMassage = res});
+            this.toaster.pop("success", errorMassage);
             this.dialog.close();
         }).catch(err => {
             this.isUpdating = false;
             console.error(err);
-            this.toaster.pop("error", "Error updating widget");
+            let errorMassage: string;
+            this.translate.get('Error updating widget').subscribe((res: string) => {errorMassage = res});
+            this.toaster.pop("error", errorMassage);
         });
     }
 
