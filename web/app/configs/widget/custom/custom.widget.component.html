@@ -3,7 +3,7 @@
         <label class="label-block">
             {{'Widget Name' | translate}}
             <input type="text" class="form-control"
-                   placeholder="{{ defaultName }}"
+                   placeholder="{{ defaultName | translate}}"
                    [(ngModel)]="widget.dimension.newName" name="widget-name-{{widget.id}}"
                    [disabled]="isUpdating"/>
         </label>

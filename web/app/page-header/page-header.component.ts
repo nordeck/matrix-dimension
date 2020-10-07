@@ -20,8 +20,7 @@ export class PageHeaderComponent {
                 let children = currentRoute.children;
                 children.forEach(route => {
                     console.log('ROUTER', route.snapshot.data);
-                    //this.translate.get(route.snapshot.data['breadcrumb']).subscribe((res: string) => {route.snapshot.data['breadcrumb'] = res});
-                    //this.translate.get(route.snapshot.data['name']).subscribe((res: string) => {route.snapshot.data['name'] = res});
+                    if(route.snapshot.data['breadcrumb']){this.translate.get(route.snapshot.data['breadcrumb']).subscribe((res: string) => {route.snapshot.data['breadcrumb'] = res});}
                     console.log('NEW ROUTER', route.snapshot.data['breadcrumb']);
                     currentRoute = route;
                     url += "/" + route.snapshot.url.map(s => s.path).join("/");
