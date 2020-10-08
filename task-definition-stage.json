@@ -24,7 +24,7 @@
             "environment": [
                 {
                     "name": "NODE_ENV",
-                    "value": "test"
+                    "value": "stage"
                 }
             ],
             "essential": true,
