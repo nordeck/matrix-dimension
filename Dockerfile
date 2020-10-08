@@ -1,5 +1,9 @@
 FROM node:10.16.0-alpine
 
+ENV environment=dev
+
+RUN echo ">>>> Running with environment = " ${environment}
+
 LABEL maintainer="Andreas Peters <support@aventer.biz>"
 #Upstream URL: https://git.aventer.biz/AVENTER/docker-matrix-dimension
 
@@ -43,5 +47,8 @@ ENV DIMENSION_DB_PATH=/data/dimension.db
 
 EXPOSE 8184
 #CMD ["/bin/sh"]
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT exec /docker-entrypoint.sh ${environment}
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+#ENTRYPOINT ["/bin/bash"]
+#CMD ["/docker-entrypoint", "${environment}"]
 
