@@ -7,6 +7,7 @@ import {
 } from "./manage-selfhosted/manage-selfhosted.component";
 import { FE_TelegramBridge } from "../../../shared/models/telegram";
 import { AdminTelegramApiService } from "../../../shared/services/admin/admin-telegram-api.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     templateUrl: "./telegram.component.html",
@@ -20,7 +21,8 @@ export class AdminTelegramBridgeComponent implements OnInit {
 
     constructor(private telegramApi: AdminTelegramApiService,
                 private toaster: ToasterService,
-                private modal: Modal) {
+                private modal: Modal,
+                public translate: TranslateService) {
     }
 
     public ngOnInit() {
@@ -32,7 +34,9 @@ export class AdminTelegramBridgeComponent implements OnInit {
             this.configurations = await this.telegramApi.getBridges();
         } catch (err) {
             console.error(err);
-            this.toaster.pop("error", "Error loading bridges");
+            let errorMassage: string;
+            this.translate.get('Error loading bridges').subscribe((res: string) => {errorMassage = res});
+            this.toaster.pop("error", errorMassage);
         }
     }
 
@@ -47,7 +51,9 @@ export class AdminTelegramBridgeComponent implements OnInit {
         }, ManageSelfhostedTelegramBridgeDialogContext)).result.then(() => {
             this.reload().catch(err => {
                 console.error(err);
-                this.toaster.pop("error", "Failed to get an update Telegram bridge list");
+                let errorMassage: string;
+                this.translate.get('Failed to get an update Telegram bridge list').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("error", errorMassage);
             });
         });
     }
@@ -72,7 +78,9 @@ export class AdminTelegramBridgeComponent implements OnInit {
         }, ManageSelfhostedTelegramBridgeDialogContext)).result.then(() => {
             this.reload().catch(err => {
                 console.error(err);
-                this.toaster.pop("error", "Failed to get an update Telegram bridge list");
+                let errorMassage: string;
+                this.translate.get('Failed to get an update Telegram bridge list').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("error", errorMassage);
             });
         });
     }

@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import "../style/app.scss";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: "my-app", // <my-app></my-app>
@@ -8,7 +9,9 @@ import "../style/app.scss";
 })
 export class AppComponent {
 
-    constructor() {
-        console.log("Dimension AppComponent constructed");
+    constructor(public translate: TranslateService) {
+        translate.addLangs(['en', 'de']);
+        translate.setDefaultLang('en');
+        translate.use('de');
     }
 }

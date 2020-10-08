@@ -3,6 +3,7 @@ import { ToasterService } from "angular2-toaster";
 import { DialogRef, ModalComponent } from "ngx-modialog";
 import { BSModalContext } from "ngx-modialog/plugins/bootstrap";
 import { AdminTelegramApiService } from "../../../../shared/services/admin/admin-telegram-api.service";
+import { TranslateService } from "@ngx-translate/core";
 
 export class ManageSelfhostedTelegramBridgeDialogContext extends BSModalContext {
     public provisionUrl: string;
@@ -28,7 +29,8 @@ export class AdminTelegramBridgeManageSelfhostedComponent implements ModalCompon
 
     constructor(public dialog: DialogRef<ManageSelfhostedTelegramBridgeDialogContext>,
                 private telegramApi: AdminTelegramApiService,
-                private toaster: ToasterService) {
+                private toaster: ToasterService,
+                public translate: TranslateService) {
         this.provisionUrl = dialog.context.provisionUrl;
         this.sharedSecret = dialog.context.sharedSecret;
         this.allowTgPuppets = dialog.context.allowTgPuppets;
@@ -45,21 +47,29 @@ export class AdminTelegramBridgeManageSelfhostedComponent implements ModalCompon
         };
         if (this.isAdding) {
             this.telegramApi.newSelfhosted(this.provisionUrl, this.sharedSecret, options).then(() => {
-                this.toaster.pop("success", "Telegram bridge added");
+                let errorMassage: string;
+                this.translate.get('Telegram bridge added').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("success", errorMassage);
                 this.dialog.close();
             }).catch(err => {
                 console.error(err);
                 this.isSaving = false;
-                this.toaster.pop("error", "Failed to create Telegram bridge");
+                let errorMassage: string;
+                this.translate.get('Failed to create Telegram bridge').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("error", errorMassage);
             });
         } else {
             this.telegramApi.updateSelfhosted(this.bridgeId, this.provisionUrl, this.sharedSecret, options).then(() => {
-                this.toaster.pop("success", "Telegram bridge updated");
+                let errorMassage: string;
+                this.translate.get('Telegram bridge updated').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("success", errorMassage);
                 this.dialog.close();
             }).catch(err => {
                 console.error(err);
                 this.isSaving = false;
-                this.toaster.pop("error", "Failed to update Telegram bridge");
+                let errorMassage: string;
+                this.translate.get('Failed to update Telegram bridge').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("error", errorMassage);
             });
         }
     }
