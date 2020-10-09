@@ -89,7 +89,7 @@ stickers:
 dimension:
   # This is where Dimension is accessible from clients. Be sure to set this
   # to your own Dimension instance.
-  publicUrl: "http://127.0.0.1:8184"
+  publicUrl: "https://dimension.stage.nordeck.systems:8184"
 
 # Settings for controlling how logging works
 logging:

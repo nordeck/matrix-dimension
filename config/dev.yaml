@@ -34,7 +34,6 @@ homeserver:
 # To access the admin interface, open Dimension in Element and click the settings icon.
 admins:
   - "@wagner.wutzke:synapse.dev.nordeck.systems"
-  - "@nurjin:synapse.dev.nordeck.systems"
 
 # IPs and CIDR ranges listed here will be blocked from being widgets.
 # Note: Widgets may still be embedded with restricted content, although not through Dimension directly.
@@ -90,7 +89,7 @@ stickers:
 dimension:
   # This is where Dimension is accessible from clients. Be sure to set this
   # to your own Dimension instance.
-  publicUrl: "http://127.0.0.1:8184"
+  publicUrl: "https://dimension.dev.nordeck.systems:8184"
 
 # Settings for controlling how logging works
 logging:
