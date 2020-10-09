@@ -33,7 +33,7 @@ homeserver:
 # These users can modify the integrations this Dimension supports.
 # To access the admin interface, open Dimension in Element and click the settings icon.
 admins:
-  - "@wagner.wutzke:abcmatrix.nordeck.net"
+  - "@wagner.wutzke:synapse.stage.nordeck.systems"
 
 # IPs and CIDR ranges listed here will be blocked from being widgets.
 # Note: Widgets may still be embedded with restricted content, although not through Dimension directly.
