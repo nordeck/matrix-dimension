@@ -47,6 +47,7 @@ ENV DIMENSION_DB_PATH=/data/dimension.db
 
 EXPOSE 8184
 #CMD ["/bin/sh"]
+RUN echo ">>>> Using ENV_VAR = " ${ENV_VAR}
 ENTRYPOINT exec /docker-entrypoint.sh ${ENV_VAR}
 #ENTRYPOINT ["/docker-entrypoint.sh"]
 #ENTRYPOINT ["/bin/bash"]

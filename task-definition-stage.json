@@ -25,6 +25,10 @@
                 {
                     "name": "NODE_ENV",
                     "value": "stage"
+                },
+                {
+                    "name": "ENV_VAR",
+                    "value": "stage"
                 }
             ],
             "essential": true,

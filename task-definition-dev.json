@@ -25,6 +25,10 @@
                 {
                     "name": "NODE_ENV",
                     "value": "dev"
+                },
+                {
+                    "name": "ENV_VAR",
+                    "value": "dev"
                 }
             ],
             "essential": true,
