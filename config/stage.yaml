@@ -8,11 +8,11 @@ web:
 homeserver:
   # The domain name of the homeserver. This is used in many places, such as with go-neb
   # setups, to identify the homeserver.
-  name: "synapse.nordeck.net"
+  name: "synapse.stage.nordeck.systems"
 
   # The URL that Dimension, go-neb, and other services provisioned by Dimension should
   # use to access the homeserver with.
-  clientServerUrl: "https://synapse.nordeck.net"
+  clientServerUrl: "https://synapse.stage.nordeck.systems:8448"
 
   # The URL that Dimension should use when trying to communicate with federated APIs on
   # the homeserver. If not supplied or left empty Dimension will try to resolve the address

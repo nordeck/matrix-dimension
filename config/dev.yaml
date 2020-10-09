@@ -8,11 +8,11 @@ web:
 homeserver:
   # The domain name of the homeserver. This is used in many places, such as with go-neb
   # setups, to identify the homeserver.
-  name: "synapse.nordeck.net"
+  name: "synapse.dev.nordeck.systems"
 
   # The URL that Dimension, go-neb, and other services provisioned by Dimension should
   # use to access the homeserver with.
-  clientServerUrl: "https://synapse.nordeck.net"
+  clientServerUrl: "https://synapse.dev.nordeck.systems:8448"
 
   # The URL that Dimension should use when trying to communicate with federated APIs on
   # the homeserver. If not supplied or left empty Dimension will try to resolve the address
@@ -33,7 +33,8 @@ homeserver:
 # These users can modify the integrations this Dimension supports.
 # To access the admin interface, open Dimension in Element and click the settings icon.
 admins:
-  - "@wagner.wutzke:abcmatrix.nordeck.net"
+  - "@wagner.wutzke:synapse.dev.nordeck.systems"
+  - "@nurjin:synapse.dev.nordeck.systems"
 
 # IPs and CIDR ranges listed here will be blocked from being widgets.
 # Note: Widgets may still be embedded with restricted content, although not through Dimension directly.
