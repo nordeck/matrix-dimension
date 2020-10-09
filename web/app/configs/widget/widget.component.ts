@@ -39,6 +39,7 @@ export class WidgetComponent implements OnInit {
                 public translate?: TranslateService) {
         this.isLoading = true;
         this.isUpdating = false;
+        this.translate = translate;
     }
 
     public ngOnInit(): void {
