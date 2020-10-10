@@ -28,7 +28,7 @@ homeserver:
   # for tracking custom sticker pack updates. This should be a user configured on the homeserver
   # and be dedicated to Dimension (create a user named "dimension" on your homeserver). For
   # information on how to acquire an access token, visit https://t2bot.io/docs/access_tokens
-  accessToken: "MDAyM2xvY2F0aW9uIGFiY21hdHJpeC5ub3JkZWNrLm5ldAowMDEzaWRlbnRpZmllciBrZXkKMDAxMGNpZCBnZW4gPSAxCjAwMzhjaWQgdXNlcl9pZCA9IEBkaW1lbnNpb24udXNlcjphYmNtYXRyaXgubm9yZGVjay5uZXQKMDAxNmNpZCB0eXBlID0gYWNjZXNzCjAwMjFjaWQgbm9uY2UgPSA0Y1hQY1lhVkgmWWprQTt1CjAwMmZzaWduYXR1cmUgZN2wWHb-wnUUM6lgQMqNKX8sSJ4PZWDRxofA6LS3EWAK"
+  accessToken: "MDAyOWxvY2F0aW9uIHN5bmFwc2UuZGV2Lm5vcmRlY2suc3lzdGVtcwowMDEzaWRlbnRpZmllciBrZXkKMDAxMGNpZCBnZW4gPSAxCjAwM2VjaWQgdXNlcl9pZCA9IEBzdGVmZmVuLmtvbG1lcjpzeW5hcHNlLmRldi5ub3JkZWNrLnN5c3RlbXMKMDAxNmNpZCB0eXBlID0gYWNjZXNzCjAwMjFjaWQgbm9uY2UgPSBNVXBXNlg7SmtoZ1dzeWZnCjAwMmZzaWduYXR1cmUgXDqdRO7-B6ts6OoKi5Tdud2DLYCo3zyKz7CtXks1ZmQK"
 
 # These users can modify the integrations this Dimension supports.
 # To access the admin interface, open Dimension in Element and click the settings icon.
