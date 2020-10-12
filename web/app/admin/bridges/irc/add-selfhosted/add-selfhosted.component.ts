@@ -21,21 +21,18 @@ export class AdminIrcBridgeAddSelfhostedComponent implements ModalComponent<AddS
                 private ircApi: AdminIrcApiService,
                 private toaster: ToasterService,
                 public translate: TranslateService) {
+        this.translate = translate;
     }
 
     public add() {
         this.isSaving = true;
         this.ircApi.newSelfhosted(this.provisionUrl).then(() => {
-            let errorMassage: string;
-            this.translate.get('IRC Bridge added').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("success", errorMassage);
+            this.translate.get('IRC Bridge added').subscribe((res: string) => {this.toaster.pop("success", res); });
             this.dialog.close();
         }).catch(err => {
             console.error(err);
             this.isSaving = false;
-            let errorMassage: string;
-            this.translate.get('Failed to create IRC bridge').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Failed to create IRC bridge').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 }

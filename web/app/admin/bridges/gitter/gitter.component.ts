@@ -28,6 +28,7 @@ export class AdminGitterBridgeComponent implements OnInit {
                 private toaster: ToasterService,
                 private modal: Modal,
                 public translate: TranslateService) {
+        this.translate = translate;
     }
 
     public ngOnInit() {
@@ -40,9 +41,7 @@ export class AdminGitterBridgeComponent implements OnInit {
             this.configurations = await this.gitterApi.getBridges();
         } catch (err) {
             console.error(err);
-            let errorMassage: string;
-            this.translate.get('Error loading bridges').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error loading bridges').subscribe((res: string) => {this.toaster.pop("error", res); } );
         }
     }
 
@@ -52,16 +51,12 @@ export class AdminGitterBridgeComponent implements OnInit {
         const createBridge = (upstream: FE_Upstream) => {
             return this.gitterApi.newFromUpstream(upstream).then(bridge => {
                 this.configurations.push(bridge);
-                let errorMassage: string;
-                this.translate.get('matrix.org\'s Gitter bridge added').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("success", errorMassage);
+                this.translate.get('matrix.org\'s Gitter bridge added').subscribe((res: string) => {this.toaster.pop("success", res); });
                 this.isUpdating = false;
             }).catch(err => {
                 console.error(err);
                 this.isUpdating = false;
-                let errorMassage: string;
-                this.translate.get('Error adding matrix.org\'s Gitter Bridge').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Error adding matrix.org\'s Gitter Bridge').subscribe((res: string) => {this.toaster.pop("error", res); } );
             });
         };
 
@@ -74,9 +69,7 @@ export class AdminGitterBridgeComponent implements OnInit {
                 createBridge(upstream);
             }).catch(err => {
                 console.error(err);
-                let errorMassage: string;
-                this.translate.get('Error creating matrix.org\'s Gitter Bridge').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Error creating matrix.org\'s Gitter Bridge').subscribe((res: string) => {this.toaster.pop("error", res); } );
             });
         } else createBridge(vectorUpstreams[0]);
     }
@@ -90,9 +83,7 @@ export class AdminGitterBridgeComponent implements OnInit {
         }, ManageSelfhostedGitterBridgeDialogContext)).result.then(() => {
             this.reload().catch(err => {
                 console.error(err);
-                let errorMassage: string;
-                this.translate.get('Failed to get an update Gitter bridge list').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Failed to get an update Gitter bridge list').subscribe((res: string) => {this.toaster.pop("error", res); } );
             });
         });
     }
@@ -107,9 +98,7 @@ export class AdminGitterBridgeComponent implements OnInit {
         }, ManageSelfhostedGitterBridgeDialogContext)).result.then(() => {
             this.reload().catch(err => {
                 console.error(err);
-                let errorMassage: string;
-                this.translate.get('Failed to get an update Gitter bridge list').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Failed to get an update Gitter bridge list').subscribe((res: string) => {this.toaster.pop("error", res); } );
             });
         });
     }

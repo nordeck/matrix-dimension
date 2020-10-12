@@ -20,6 +20,7 @@ export class AdminWidgetEtherpadConfigComponent implements ModalComponent<Widget
                 private adminIntegrationsApi: AdminIntegrationsApiService,
                 private toaster: ToasterService,
                 public translate: TranslateService) {
+        this.translate = translate;
         this.originalWidget = dialog.context.widget;
         this.widget = JSON.parse(JSON.stringify(this.originalWidget));
     }
@@ -28,16 +29,12 @@ export class AdminWidgetEtherpadConfigComponent implements ModalComponent<Widget
         this.isUpdating = true;
         this.adminIntegrationsApi.setIntegrationOptions(this.widget.category, this.widget.type, this.widget.options).then(() => {
             this.originalWidget.options = this.widget.options;
-            let errorMassage: string;
-            this.translate.get('Widget updated').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("success", errorMassage);
+            this.translate.get('Widget updated').subscribe((res: string) => {this.toaster.pop("success", res); });
             this.dialog.close();
         }).catch(err => {
             this.isUpdating = false;
             console.error(err);
-            let errorMassage: string;
-            this.translate.get('Error updating widget').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error updating widget').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 }

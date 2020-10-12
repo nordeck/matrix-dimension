@@ -24,6 +24,7 @@ export class AdminNebAppserviceConfigComponent implements ModalComponent<Appserv
                 private adminAppserviceApi: AdminAppserviceApiService,
                 private toaster: ToasterService,
                 public translate: TranslateService) {
+        this.translate = translate;
         this.neb = dialog.context.neb;
 
         this.adminAppserviceApi.getAppservice(this.neb.appserviceId).then(appservice => {
@@ -31,9 +32,7 @@ export class AdminNebAppserviceConfigComponent implements ModalComponent<Appserv
             this.isLoading = false;
         }).catch(err => {
             console.error(err);
-            let errorMassage: string;
-            this.translate.get('Could not load appservice configuration').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Could not load appservice configuration').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 
@@ -54,14 +53,10 @@ export class AdminNebAppserviceConfigComponent implements ModalComponent<Appserv
 
     public test() {
         this.adminAppserviceApi.test(this.neb.appserviceId).then(() => {
-            let errorMassage: string;
-            this.translate.get('The appservice appears to be correctly set up').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("success", errorMassage);
+            this.translate.get('The appservice appears to be correctly set up').subscribe((res: string) => {this.toaster.pop("success", res); });
         }).catch(err => {
             console.error(err);
-            let errorMassage: string;
-            this.translate.get('The appservice is not correctly set up').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('The appservice is not correctly set up').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 }

@@ -26,6 +26,7 @@ export class ReauthExampleWidgetWrapperComponent extends CapableWidget implement
                 private changeDetector: ChangeDetectorRef,
                 public translate: TranslateService) {
         super();
+        this.translate = translate;
         this.translate.get('Checking client version...').subscribe((res: string) => {this.stateMessage = res});
 
         const params: any = activatedRoute.snapshot.queryParams;

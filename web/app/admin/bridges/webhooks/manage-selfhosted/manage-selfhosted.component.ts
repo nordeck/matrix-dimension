@@ -29,6 +29,7 @@ export class AdminWebhooksBridgeManageSelfhostedComponent implements ModalCompon
                 private webhooksApi: AdminWebhooksApiService,
                 private toaster: ToasterService,
                 public translate: TranslateService) {
+        this.translate = translate;
         this.provisionUrl = dialog.context.provisionUrl;
         this.sharedSecret = dialog.context.sharedSecret;
         this.bridgeId = dialog.context.bridgeId;
@@ -39,29 +40,21 @@ export class AdminWebhooksBridgeManageSelfhostedComponent implements ModalCompon
         this.isSaving = true;
         if (this.isAdding) {
             this.webhooksApi.newSelfhosted(this.provisionUrl, this.sharedSecret).then(() => {
-                let errorMassage: string;
-                this.translate.get('Webhook bridge added').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("success", errorMassage);
+                this.translate.get('Webhook bridge added').subscribe((res: string) => {this.toaster.pop("success", res); });
                 this.dialog.close();
             }).catch(err => {
                 console.error(err);
                 this.isSaving = false;
-                let errorMassage: string;
-                this.translate.get('Failed to create Webhook bridge').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Failed to create Webhook bridge').subscribe((res: string) => {this.toaster.pop("error", res); });
             });
         } else {
             this.webhooksApi.updateSelfhosted(this.bridgeId, this.provisionUrl, this.sharedSecret).then(() => {
-                let errorMassage: string;
-                this.translate.get('Webhook bridge updated').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("success", errorMassage);
+                this.translate.get('Webhook bridge updated').subscribe((res: string) => {this.toaster.pop("success", res); });
                 this.dialog.close();
             }).catch(err => {
                 console.error(err);
                 this.isSaving = false;
-                let errorMassage: string;
-                this.translate.get('Failed to update Webhook bridge').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Failed to update Webhook bridge').subscribe((res: string) => {this.toaster.pop("error", res); });
             });
         }
     }

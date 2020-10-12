@@ -33,12 +33,11 @@ export class AdminNebComponent {
                 private activatedRoute: ActivatedRoute,
                 private modal: Modal,
                 public translate: TranslateService) {
+        this.translate = translate;
 
         this.reload().then(() => this.isLoading = false).catch(error => {
             console.error(error);
-            let errorMassage: string;
-            this.translate.get('Error loading go-neb configuration').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error loading go-neb configuration').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 
@@ -101,19 +100,13 @@ export class AdminNebComponent {
         const createNeb = (upstream: FE_Upstream) => {
             return this.nebApi.newUpstreamConfiguration(upstream).then(neb => {
                 this.configurations.push(neb);
-                let errorMassage: string;
-                let errorMassage1: string;
-                this.translate.get('matrix.org\'s go-neb added').subscribe((res: string) => {errorMassage = res});
-                this.translate.get('Click the pencil icon to enable the bots.').subscribe((res: string) => {errorMassage1 = res});
-                this.toaster.pop("success", errorMassage, errorMassage1);
+                this.translate.get(['matrix.org\'s go-neb added', 'Click the pencil icon to enable the bots.']).subscribe((res: string) => {this.toaster.pop("success", res[0], res[1]); });
                 this.isAddingModularNeb = false;
                 this.hasModularNeb = true;
             }).catch(error => {
                 console.error(error);
                 this.isAddingModularNeb = false;
-                let errorMassage: string;
-                this.translate.get('Error adding matrix.org\'s go-neb').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Error adding matrix.org\'s go-neb').subscribe((res: string) => {this.toaster.pop("error", res); });
             });
         };
 
@@ -126,9 +119,7 @@ export class AdminNebComponent {
                 createNeb(upstream);
             }).catch(err => {
                 console.error(err);
-                let errorMassage: string;
-                this.translate.get('Error creating matrix.org go-neb').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Error creating matrix.org go-neb').subscribe((res: string) => {this.toaster.pop("error", res); });
             });
         } else createNeb(vectorUpstreams[0]);
     }

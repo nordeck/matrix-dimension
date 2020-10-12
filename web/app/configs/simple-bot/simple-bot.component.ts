@@ -27,6 +27,7 @@ export class ConfigSimpleBotComponent {
                 private scalar: ScalarClientApiService,
                 private integrationsApi: IntegrationsApiService,
                 public translate: TranslateService) {
+        this.translate = translate;
         this.bot = dialog.context.bot;
         this.roomId = dialog.context.roomId;
 
@@ -44,13 +45,9 @@ export class ConfigSimpleBotComponent {
         promise.then(() => {
             this.bot._isUpdating = false;
             if (this.bot._inRoom) {
-                let message: string;
-                this.translate.get('was invited to the room').subscribe((res: string) => {message = res});
-                this.toaster.pop("success", this.bot.displayName + message);
+                this.translate.get('was invited to the room').subscribe((res: string) => {this.toaster.pop("success", this.bot.displayName + res); });
             } else {
-                let message: string;
-                this.translate.get('was removed from the room').subscribe((res: string) => {message = res});
-                this.toaster.pop("success", this.bot.displayName + message);
+                this.translate.get('was removed from the room').subscribe((res: string) => {this.toaster.pop("success", this.bot.displayName + res); });
             }
         }).catch(err => {
             this.bot._inRoom = !this.bot._inRoom; // revert the status change
@@ -61,8 +58,7 @@ export class ConfigSimpleBotComponent {
             if (err.json) errorMessage = err.json().error;
             if (err.response && err.response.error) errorMessage = err.response.error.message;
             if (!errorMessage) errorMessage = "";
-            this.translate.get('Could not update integration status').subscribe((res: string) => {errorMessage = res});
-            this.toaster.pop("error", errorMessage);
+            this.translate.get('Could not update integration status').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 }

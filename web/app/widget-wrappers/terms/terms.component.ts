@@ -20,6 +20,7 @@ export class TermsWidgetWrapperComponent implements OnInit {
                 private toaster: ToasterService,
                 private widgetApi: WidgetApiService,
                 public translate: TranslateService) {
+        this.translate = translate;
     }
 
     public ngOnInit(): void {
@@ -30,9 +31,7 @@ export class TermsWidgetWrapperComponent implements OnInit {
             this.isLoading = false;
         }).catch(err => {
             console.error(err);
-            let message: string;
-            this.translate.get('Error loading policy').subscribe((res: string) => {message = res});
-            this.toaster.pop("error", message);
+            this.translate.get('Error loading policy').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 }

@@ -28,7 +28,7 @@ export class ManagerTestWidgetWrapperComponent extends CapableWidget implements 
                 private changeDetector: ChangeDetectorRef,
                 public translate: TranslateService) {
         super();
-
+        this.translate = translate;
         this.translate.get('Click the button to test your connection. This may cause your client to ask if it is okay to share your identity with the widget - this is required to test your connection to your homeserver.').subscribe((res: string) => {this.message = res});
         const params: any = activatedRoute.snapshot.queryParams;
         ScalarWidgetApi.widgetId = params.widgetId;

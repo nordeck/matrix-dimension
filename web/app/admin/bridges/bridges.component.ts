@@ -15,6 +15,7 @@ export class AdminBridgesComponent implements OnInit {
 
     constructor(private adminIntegrations: AdminIntegrationsApiService,
                 private toaster: ToasterService, public translate: TranslateService) {
+        this.translate = translate;
     }
 
     public ngOnInit() {
@@ -23,9 +24,7 @@ export class AdminBridgesComponent implements OnInit {
             this.isLoading = false;
         }).catch(err => {
             console.error(err);
-            let errorMassage: string;
-            this.translate.get('Failed to load bridges').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Failed to load bridges').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 }

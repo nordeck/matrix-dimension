@@ -22,6 +22,7 @@ export class AdminStickerPacksComponent implements OnInit {
                 private toaster: ToasterService,
                 private modal: Modal,
                 public translate: TranslateService) {
+        this.translate = translate;
     }
 
     public ngOnInit() {
@@ -30,9 +31,7 @@ export class AdminStickerPacksComponent implements OnInit {
             this.isLoading = false;
         }).catch(err => {
             console.error(err);
-            let errorMassage: string;
-            this.translate.get('Failed to load sticker packs').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Failed to load sticker packs').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 
@@ -41,16 +40,12 @@ export class AdminStickerPacksComponent implements OnInit {
         this.isUpdating = true;
         this.adminStickers.togglePack(pack.id, pack.isEnabled).then(() => {
             this.isUpdating = false;
-            let errorMassage: string;
-            this.translate.get('Sticker pack updated').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("success", errorMassage);
+            this.translate.get('Sticker pack updated').subscribe((res: string) => {this.toaster.pop("success", res); });
         }).catch(err => {
             console.error(err);
             pack.isEnabled = !pack.isEnabled; // revert change
             this.isUpdating = false;
-            let errorMassage: string;
-            this.translate.get('Error updating sticker pack').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error updating sticker pack').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 
@@ -69,15 +64,11 @@ export class AdminStickerPacksComponent implements OnInit {
             this.isImporting = false;
             this.tgUrl = "";
             this.packs.push(pack);
-            let errorMassage: string;
-            this.translate.get('Telegram sticker pack imported').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("success", errorMassage);
+            this.translate.get('Telegram sticker pack imported').subscribe((res: string) => {this.toaster.pop("success", res); });
         }).catch(err => {
             console.error(err);
             this.isImporting = false;
-            let errorMassage: string;
-            this.translate.get('Error importing sticker pack').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error importing sticker pack').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 }

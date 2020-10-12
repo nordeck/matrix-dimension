@@ -23,6 +23,7 @@ export class AdminTelegramBridgeComponent implements OnInit {
                 private toaster: ToasterService,
                 private modal: Modal,
                 public translate: TranslateService) {
+        this.translate = translate;
     }
 
     public ngOnInit() {
@@ -34,9 +35,7 @@ export class AdminTelegramBridgeComponent implements OnInit {
             this.configurations = await this.telegramApi.getBridges();
         } catch (err) {
             console.error(err);
-            let errorMassage: string;
-            this.translate.get('Error loading bridges').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error loading bridges').subscribe((res: string) => {this.toaster.pop("error", res); });
         }
     }
 
@@ -51,9 +50,7 @@ export class AdminTelegramBridgeComponent implements OnInit {
         }, ManageSelfhostedTelegramBridgeDialogContext)).result.then(() => {
             this.reload().catch(err => {
                 console.error(err);
-                let errorMassage: string;
-                this.translate.get('Failed to get an update Telegram bridge list').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Failed to get an update Telegram bridge list').subscribe((res: string) => {this.toaster.pop("error", res); });
             });
         });
     }
@@ -78,9 +75,7 @@ export class AdminTelegramBridgeComponent implements OnInit {
         }, ManageSelfhostedTelegramBridgeDialogContext)).result.then(() => {
             this.reload().catch(err => {
                 console.error(err);
-                let errorMassage: string;
-                this.translate.get('Failed to get an update Telegram bridge list').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Failed to get an update Telegram bridge list').subscribe((res: string) => {this.toaster.pop("error", res); });
             });
         });
     }

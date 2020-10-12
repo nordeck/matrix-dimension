@@ -28,6 +28,7 @@ export class AdminNebGoogleConfigComponent implements ModalComponent<NebBotConfi
                 private adminNebApi: AdminNebApiService,
                 private toaster: ToasterService,
                 public translate: TranslateService) {
+        this.translate = translate;
         this.neb = dialog.context.neb;
         this.integration = dialog.context.integration;
     }
@@ -38,25 +39,19 @@ export class AdminNebGoogleConfigComponent implements ModalComponent<NebBotConfi
             this.isLoading = false;
         }).catch(err => {
             console.error(err);
-            let errorMassage: string;
-            this.translate.get('Error loading configuration').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error loading configuration').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 
     public save() {
         this.isUpdating = true;
         this.adminNebApi.setIntegrationConfiguration(this.neb.id, this.integration.type, this.config).then(() => {
-            let errorMassage: string;
-            this.translate.get('Configuration updated').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("success", errorMassage);
+            this.translate.get('Configuration updated').subscribe((res: string) => {this.toaster.pop("success", res); });
             this.dialog.close();
         }).catch(err => {
             this.isUpdating = false;
             console.error(err);
-            let errorMassage: string;
-            this.translate.get('Error updating integration').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error updating integration').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 }

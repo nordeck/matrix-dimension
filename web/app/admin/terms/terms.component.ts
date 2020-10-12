@@ -22,6 +22,7 @@ export class AdminTermsComponent implements OnInit {
                 private router: Router,
                 private activatedRoute: ActivatedRoute,
                 public translate: TranslateService) {
+        this.translate = translate;
     }
 
     public ngOnInit() {
@@ -33,9 +34,7 @@ export class AdminTermsComponent implements OnInit {
             this.isLoading = false;
         }).catch(err => {
             console.error(err);
-            let errorMassage: string;
-            this.translate.get('Failed to load policies').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Failed to load policies').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 

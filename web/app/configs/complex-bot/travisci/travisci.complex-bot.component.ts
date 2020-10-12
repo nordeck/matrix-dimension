@@ -30,6 +30,7 @@ export class TravisCiComplexBotConfigComponent extends ComplexBotComponent<Travi
 
     constructor(public translate?: TranslateService) {
         super("travisci");
+        this.translate = translate;
     }
 
     public get webhookUrl(): string {
@@ -51,9 +52,7 @@ export class TravisCiComplexBotConfigComponent extends ComplexBotComponent<Travi
 
     public addRepo(): void {
         if (!this.newRepoKey.trim()) {
-            let message: string;
-            this.translate.get('Please enter a repository').subscribe((res: string) => {message = res});
-            this.toaster.pop('warning', message);
+            this.translate.get('Please enter a repository').subscribe((res: string) => {this.toaster.pop('warning', res); });
             return;
         }
 

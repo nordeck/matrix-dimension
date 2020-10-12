@@ -13,6 +13,7 @@ import { TranslateService } from "@ngx-translate/core";
 export class YoutubeWidgetConfigComponent extends WidgetComponent {
     constructor(public translate: TranslateService) {
         super(WIDGET_YOUTUBE, "Video", "video", "youtube");
+        this.translate = translate;
     }
 
     protected OnNewWidgetPrepared(widget: EditableWidget) {
@@ -46,16 +47,12 @@ export class YoutubeWidgetConfigComponent extends WidgetComponent {
 
     private setVideoUrl(widget: EditableWidget) {
         if (!widget.dimension.newData.videoUrl || widget.dimension.newData.videoUrl.trim().length === 0) {
-            let message: string;
-            this.translate.get('Please enter a video URL').subscribe((res: string) => {message = res});
-            throw new Error(message);
+            this.translate.get('Please enter a video URL').subscribe((res: string) => {throw new Error(res); });
         }
 
         const videoUrl = this.getRealVideoUrl(widget.dimension.newData.videoUrl);
         if (!videoUrl) {
-            let message: string;
-            this.translate.get('Please enter a YouTube, Vimeo, or DailyMotion video URL').subscribe((res: string) => {message = res});
-            throw new Error(message);
+            this.translate.get('Please enter a YouTube, Vimeo, or DailyMotion video URL').subscribe((res: string) => {throw new Error(res); });
         }
 
         widget.dimension.newUrl = videoUrl;

@@ -27,13 +27,12 @@ export class RssComplexBotConfigComponent extends ComplexBotComponent<RssConfig>
 
     constructor(public translate?: TranslateService) {
         super("rss");
+        this.translate = translate;
     }
 
     public addFeed(): void {
         if (!this.newFeedUrl.trim()) {
-            let message: string;
-            this.translate.get('Please enter a feed URL').subscribe((res: string) => {message = res});
-            this.toaster.pop('warning', message);
+            this.translate.get('Please enter a feed URL').subscribe((res: string) => {this.toaster.pop('warning', res); });
             return;
         }
 

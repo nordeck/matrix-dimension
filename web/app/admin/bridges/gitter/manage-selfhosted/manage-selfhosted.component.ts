@@ -25,6 +25,7 @@ export class AdminGitterBridgeManageSelfhostedComponent implements ModalComponen
                 private gitterApi: AdminGitterApiService,
                 private toaster: ToasterService,
                 public translate: TranslateService) {
+        this.translate = translate;
         this.provisionUrl = dialog.context.provisionUrl;
         this.bridgeId = dialog.context.bridgeId;
         this.isAdding = !this.bridgeId;
@@ -34,29 +35,21 @@ export class AdminGitterBridgeManageSelfhostedComponent implements ModalComponen
         this.isSaving = true;
         if (this.isAdding) {
             this.gitterApi.newSelfhosted(this.provisionUrl).then(() => {
-                let errorMassage: string;
-                this.translate.get('Gitter bridge added').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("success", errorMassage);
+                this.translate.get('Gitter bridge added').subscribe((res: string) => {this.toaster.pop("success", res); });
                 this.dialog.close();
             }).catch(err => {
                 console.error(err);
                 this.isSaving = false;
-                let errorMassage: string;
-                this.translate.get('Failed to create Gitter bridge').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Failed to create Gitter bridge').subscribe((res: string) => { this.toaster.pop("error", res); });
             });
         } else {
             this.gitterApi.updateSelfhosted(this.bridgeId, this.provisionUrl).then(() => {
-                let errorMassage: string;
-                this.translate.get('Gitter bridge updated').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("success", errorMassage);
+                this.translate.get('Gitter bridge updated').subscribe((res: string) => {this.toaster.pop("success", res); });
                 this.dialog.close();
             }).catch(err => {
                 console.error(err);
                 this.isSaving = false;
-                let errorMassage: string;
-                this.translate.get('Failed to update Gitter bridge').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Failed to update Gitter bridge').subscribe((res: string) => {this.toaster.pop("error", res); });
             });
         }
     }

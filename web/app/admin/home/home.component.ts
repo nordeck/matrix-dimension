@@ -22,6 +22,7 @@ export class AdminHomeComponent {
                 private toaster: ToasterService,
                 private modal: Modal,
                 public translate: TranslateService) {
+        this.translate = translate;
         adminApi.getConfig().then(config => {
             this.config = config;
             this.isLoading = false;
@@ -33,15 +34,11 @@ export class AdminHomeComponent {
             isBlocking: true,
         }, LogoutConfirmationDialogContext)).result.then(() => {
             this.adminApi.logoutAll().then(() => {
-                let errorMassage: string;
-                this.translate.get('Everyone has been logged out').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("success", errorMassage);
+                this.translate.get('Everyone has been logged out').subscribe((res: string) => {this.toaster.pop("success", res); });
                 this.config.sessionInfo.numTokens = 0;
             }).catch(err => {
                 console.error(err);
-                let errorMassage: string;
-                this.translate.get('Error logging everyone out').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Error logging everyone out').subscribe((res: string) => {this.toaster.pop("error", res); });
             });
         });
     }

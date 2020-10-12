@@ -32,6 +32,7 @@ export class AdminIrcBridgeNetworksComponent implements ModalComponent<IrcNetwor
                 private ircApi: AdminIrcApiService,
                 private toaster: ToasterService,
                 public translate: TranslateService) {
+        this.translate = translate;
         this.bridge = dialog.context.bridge;
 
         const networkIds = Object.keys(this.bridge.availableNetworks);
@@ -53,11 +54,7 @@ export class AdminIrcBridgeNetworksComponent implements ModalComponent<IrcNetwor
         this.isUpdating = true;
         this.ircApi.setNetworkEnabled(this.bridge.id, network.id, network.isEnabled).then(() => {
             this.isUpdating = false;
-            let errorMassage: string;
-            let errorMassage1: string;
-            this.translate.get('Enabled').subscribe((res: string) => {errorMassage = res});
-            this.translate.get('disabled').subscribe((res: string) => {errorMassage1 = res});
-            this.toaster.pop("success", "Network " + (network.isEnabled ? errorMassage : errorMassage1));
+            this.translate.get(['Enabled', 'disabled']).subscribe((res: string) => {this.toaster.pop("success", "Network " + (network.isEnabled ? res[0] : res[1])); });
         }).catch(err => {
             console.error(err);
             this.isUpdating = false;

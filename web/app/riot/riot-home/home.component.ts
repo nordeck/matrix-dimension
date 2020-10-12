@@ -49,6 +49,7 @@ export class RiotHomeComponent {
                 private modal: Modal,
                 private toaster: ToasterService,
                 public translate: TranslateService) {
+        this.translate = translate;
         let params: any = this.activatedRoute.snapshot.queryParams;
 
         this.requestedScreen = params.screen;

@@ -23,14 +23,13 @@ export class AdminWidgetsComponent {
     public widgets: FE_Widget[];
 
     constructor(private adminIntegrationsApi: AdminIntegrationsApiService, private toaster: ToasterService, private modal: Modal, public translate: TranslateService) {
+        this.translate = translate;
         this.adminIntegrationsApi.getAllWidgets().then(widgets => {
             this.isLoading = false;
             this.widgets = widgets;
         }).catch(err => {
             console.error(err);
-            let errorMassage: string;
-            this.translate.get('Failed to load widgets').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Failed to load widgets').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 
@@ -39,16 +38,12 @@ export class AdminWidgetsComponent {
         this.isUpdating = true;
         this.adminIntegrationsApi.toggleIntegration(widget.category, widget.type, widget.isEnabled).then(() => {
             this.isUpdating = false;
-            let errorMassage: string;
-            this.translate.get('Widget updated').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("success", errorMassage);
+            this.translate.get('Widget updated').subscribe((res: string) => {this.toaster.pop("success", res); });
         }).catch(err => {
             console.error(err);
             widget.isEnabled = !widget.isEnabled; // revert change
             this.isUpdating = false;
-            let errorMassage: string;
-            this.translate.get('Error updating widget').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error updating widget').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 
@@ -60,9 +55,7 @@ export class AdminWidgetsComponent {
 
         if (!component) {
             console.error("No known dialog component for " + widget.type);
-            let errorMassage: string;
-            this.translate.get('Error opening configuration page').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error opening configuration page').subscribe((res: string) => {this.toaster.pop("error", res); });
             return;
         }
 

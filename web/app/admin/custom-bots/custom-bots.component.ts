@@ -20,12 +20,11 @@ export class AdminCustomBotsComponent {
                 private toaster: ToasterService,
                 private modal: Modal,
                 public translate: TranslateService) {
+        this.translate = translate;
 
         this.reload().then(() => this.isLoading = false).catch(error => {
             console.error(error);
-            let errorMassage: string;
-            this.translate.get('Error loading go-neb configuration').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error loading go-neb configuration').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 
@@ -43,9 +42,7 @@ export class AdminCustomBotsComponent {
         }, AddCustomBotDialogContext)).result.then(() => {
             this.reload().catch(err => {
                 console.error(err);
-                let errorMassage: string;
-                this.translate.get('Failed to get an updated bot list').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Failed to get an updated bot list').subscribe((res: string) => {this.toaster.pop("error", res); });
             });
         });
     }
@@ -59,9 +56,7 @@ export class AdminCustomBotsComponent {
         }, AddCustomBotDialogContext)).result.then(() => {
             this.reload().catch(err => {
                 console.error(err);
-                let errorMassage: string;
-                this.translate.get('Failed to get an updated bot list').subscribe((res: string) => {errorMassage = res});
-                this.toaster.pop("error", errorMassage);
+                this.translate.get('Failed to get an updated bot list').subscribe((res: string) => {this.toaster.pop("error", res); });
             });
         });
     }
@@ -71,17 +66,11 @@ export class AdminCustomBotsComponent {
         bot.isEnabled = !bot.isEnabled;
         this.botApi.updateBot(bot.id, bot).then(() => {
             this.isUpdating = false;
-            let errorMassage: string;
-            let errorMassage1: string;
-            this.translate.get('Enabled').subscribe((res: string) => {errorMassage = res});
-            this.translate.get('disabled').subscribe((res: string) => {errorMassage1 = res});
-            this.toaster.pop("success", "Bot " + (bot.isEnabled ? errorMassage : errorMassage1));
+            this.translate.get(['Enabled', 'disabled']).subscribe((res: string) => {this.toaster.pop("success", "Bot " + (bot.isEnabled ? res[0] : res[1])); });
         }).catch(error => {
             console.error(error);
             bot.isEnabled = !bot.isEnabled;
-            let errorMassage: string;
-            this.translate.get('Error updating bot').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error updating bot').subscribe((res: string) => {this.toaster.pop("error", res); });
         })
     }
 }

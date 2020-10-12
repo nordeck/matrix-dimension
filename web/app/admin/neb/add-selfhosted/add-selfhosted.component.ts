@@ -28,6 +28,7 @@ export class AdminAddSelfhostedNebComponent {
                 private activatedRoute: ActivatedRoute,
                 private modal: Modal,
                 public translate: TranslateService) {
+        this.translate = translate;
     }
 
     public save(): void {
@@ -35,10 +36,7 @@ export class AdminAddSelfhostedNebComponent {
         this.asApi.createAppservice(this.userPrefix).then(appservice => {
             return this.nebApi.newAppserviceConfiguration(this.adminUrl, appservice);
         }).then(neb => {
-            let errorMassage: string;
-            this.translate.get('New go-neb created').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("success", errorMassage);
-
+            this.translate.get('New go-neb created').subscribe((res: string) => {this.toaster.pop("success", res); });
             this.modal.open(AdminNebAppserviceConfigComponent, overlayConfigFactory({
                 neb: neb,
 
@@ -48,9 +46,7 @@ export class AdminAddSelfhostedNebComponent {
         }).catch(err => {
             console.error(err);
             this.isSaving = false;
-            let errorMassage: string;
-            this.translate.get('Error creating appservice').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Error creating appservice').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 }

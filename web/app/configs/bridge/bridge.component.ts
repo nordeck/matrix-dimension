@@ -25,6 +25,7 @@ export class BridgeComponent<T> implements OnInit, OnDestroy {
 
     constructor(private integrationType: string,
                 public translate?: TranslateService) {
+        this.translate = translate
         this.isLoading = true;
         this.isUpdating = false;
     }
@@ -52,25 +53,19 @@ export class BridgeComponent<T> implements OnInit, OnDestroy {
             this.isLoading = false;
         }).catch(err => {
             console.error(err);
-            let message: string;
-            this.translate.get('Failed to load configuration').subscribe((res: string) => {message = res});
-            this.toaster.pop("error", message);
+            this.translate.get('Failed to load configuration').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 
     public save(): void {
         this.isUpdating = true;
         this.integrationsApi.setIntegrationConfiguration("bridge", this.integrationType, this.roomId, this.newConfig).then(() => {
-            let message: string;
-            this.translate.get('Configuration updated').subscribe((res: string) => {message = res});
-            this.toaster.pop("success", message);
+            this.translate.get('Configuration updated').subscribe((res: string) => {this.toaster.pop("success", res); });
             this.bridge.config = this.newConfig;
             this.isUpdating = false;
         }).catch(err => {
             console.error(err);
-            let message: string;
-            this.translate.get('Error updating configuration').subscribe((res: string) => {message = res});
-            this.toaster.pop("error", message);
+            this.translate.get('Error updating configuration').subscribe((res: string) => {this.toaster.pop("error", res); });
             this.isUpdating = false;
         });
     }

@@ -21,6 +21,7 @@ export class WebhooksBridgeConfigComponent extends BridgeComponent<WebhooksConfi
 
     constructor(private webhooks: WebhooksApiService, private scalar: ScalarClientApiService, public translate: TranslateService) {
         super("webhooks");
+        this.translate = translate;
     }
 
     public async newHook() {
@@ -32,9 +33,7 @@ export class WebhooksBridgeConfigComponent extends BridgeComponent<WebhooksConfi
             if (!e.response || !e.response.error || !e.response.error._error ||
                 e.response.error._error.message.indexOf("already in the room") === -1) {
                 this.isBusy = false;
-                let message: string;
-                this.translate.get('Error inviting bridge').subscribe((res: string) => {message = res});
-                this.toaster.pop("error", message);
+                this.translate.get('Error inviting bridge').subscribe((res: string) => {this.toaster.pop("error", res); });
                 return;
             }
         }
@@ -43,15 +42,11 @@ export class WebhooksBridgeConfigComponent extends BridgeComponent<WebhooksConfi
             this.newConfig.webhooks.push(hook);
             this.isBusy = false;
             this.webhookName = "";
-            let message: string;
-            this.translate.get('Webhook created').subscribe((res: string) => {message = res});
-            this.toaster.pop("success", message);
+            this.translate.get('Webhook created').subscribe((res: string) => {this.toaster.pop("success", res); });
         }).catch(err => {
             console.error(err);
             this.isBusy = false;
-            let message: string;
-            this.translate.get('Error creating webhook').subscribe((res: string) => {message = res});
-            this.toaster.pop("error", message);
+            this.translate.get('Error creating webhook').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 
@@ -61,15 +56,11 @@ export class WebhooksBridgeConfigComponent extends BridgeComponent<WebhooksConfi
             const idx = this.newConfig.webhooks.indexOf(hook);
             if (idx !== -1) this.newConfig.webhooks.splice(idx, 1);
             this.isBusy = false;
-            let message: string;
-            this.translate.get('Webhook deleted').subscribe((res: string) => {message = res});
-            this.toaster.pop("success", message);
+            this.translate.get('Webhook deleted').subscribe((res: string) => {this.toaster.pop("success", res); });
         }).catch(err => {
             console.error(err);
             this.isBusy = false;
-            let message: string;
-            this.translate.get('Error deleting webhook').subscribe((res: string) => {message = res});
-            this.toaster.pop("error", message);
+            this.translate.get('Error deleting webhook').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 }

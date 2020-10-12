@@ -13,6 +13,7 @@ export class ScreenshotCapableDirective implements OnInit, OnDestroy {
     private widgetApiSubscription: Subscription;
 
     constructor(private el: ElementRef, public translate: TranslateService) {
+        this.translate = translate;
 
     }
 
@@ -29,9 +30,7 @@ export class ScreenshotCapableDirective implements OnInit, OnDestroy {
     private takeScreenshot(request: ScalarToWidgetRequest) {
         if (this.el.nativeElement.tagName === "IFRAME") {
             console.error("Attempted to take a screenshot of an iframe");
-            let message: string;
-            this.translate.get('Failed to take screenshot: iframe not supported').subscribe((res: string) => {message = res});
-            ScalarWidgetApi.replyError(request, new Error("Cannot take screenshot of iframe"), message);
+            this.translate.get('Failed to take screenshot: iframe not supported').subscribe((res: string) => {ScalarWidgetApi.replyError(request, new Error("Cannot take screenshot of iframe"), res); });
         } else {
             domtoimage.toBlob(this.el.nativeElement).then(b => {
                 if (!b) {
@@ -41,9 +40,7 @@ export class ScreenshotCapableDirective implements OnInit, OnDestroy {
                 ScalarWidgetApi.replyScreenshot(request, b);
             }).catch(error => {
                 console.error(error);
-                let message: string;
-                this.translate.get('Failed to take screenshot').subscribe((res: string) => {message = res});
-                ScalarWidgetApi.replyError(request, error, message);
+                this.translate.get('Failed to take screenshot').subscribe((res: string) => {ScalarWidgetApi.replyError(request, error, res); });
             });
         }
     }
