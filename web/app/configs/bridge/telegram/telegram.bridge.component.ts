@@ -41,7 +41,7 @@ export class TelegramBridgeConfigComponent extends BridgeComponent<TelegramConfi
     public isUpdating: boolean;
 
     constructor(private telegram: TelegramApiService, private modal: Modal, public translate: TranslateService) {
-        super("telegram");
+        super("telegram", translate);
         this.translate = translate;
     }
 

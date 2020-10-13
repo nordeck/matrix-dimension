@@ -36,7 +36,7 @@ export class IrcBridgeConfigComponent extends BridgeComponent<IrcConfig> {
     public pending: LocalChannel[] = [];
 
     constructor(private irc: IrcApiService, public translate: TranslateService) {
-        super("irc");
+        super("irc", translate);
         this.translate = translate;
     }
 

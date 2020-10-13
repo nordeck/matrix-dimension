@@ -25,8 +25,8 @@ export class RssComplexBotConfigComponent extends ComplexBotComponent<RssConfig>
 
     public newFeedUrl = "";
 
-    constructor(public translate?: TranslateService) {
-        super("rss");
+    constructor(public translate: TranslateService) {
+        super("rss", translate);
         this.translate = translate;
     }
 

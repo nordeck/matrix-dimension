@@ -28,8 +28,8 @@ export class TravisCiComplexBotConfigComponent extends ComplexBotComponent<Travi
 
     public newRepoKey = "";
 
-    constructor(public translate?: TranslateService) {
-        super("travisci");
+    constructor(public translate: TranslateService) {
+        super("travisci", translate);
         this.translate = translate;
     }
 

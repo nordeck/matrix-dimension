@@ -20,7 +20,7 @@ export class GitterBridgeConfigComponent extends BridgeComponent<GitterConfig> {
     public isBusy: boolean;
 
     constructor(private gitter: GitterApiService, private scalar: ScalarClientApiService, public translate: TranslateService) {
-        super("gitter");
+        super("gitter", translate);
         this.translate = translate;
     }
 

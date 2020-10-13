@@ -20,8 +20,7 @@ export class WebhooksBridgeConfigComponent extends BridgeComponent<WebhooksConfi
     public isBusy = false;
 
     constructor(private webhooks: WebhooksApiService, private scalar: ScalarClientApiService, public translate: TranslateService) {
-        super("webhooks");
-        this.translate = translate;
+        super("webhooks", translate);
     }
 
     public async newHook() {

@@ -29,7 +29,7 @@ export class SlackBridgeConfigComponent extends BridgeComponent<SlackConfig> imp
     private timerId: any;
 
     constructor(private slack: SlackApiService, private scalar: ScalarClientApiService, private sanitizer: DomSanitizer, public translate: TranslateService) {
-        super("slack");
+        super("slack", translate);
         this.translate = translate;
     }
 
