@@ -36,9 +36,8 @@ export class WidgetComponent implements OnInit {
                 private wrapperId = "generic",
                 private scalarWrapperId = null,
                 private scalarWrapperUrlParamName = "url",
-                public translate?: TranslateService) {
+                public translate?: TranslateService ) {
         this.translate = translate;
-        this.translate = translate
         this.isLoading = true;
         this.isUpdating = false;
     }
@@ -262,12 +261,12 @@ export class WidgetComponent implements OnInit {
         try {
             this.OnWidgetBeforeAdd(this.newWidget);
         } catch (error) {
-            this.toaster.pop("warning", error.message);
+            this.translate.get(error.message).subscribe((res: string) => {this.toaster.pop("warning", res); });
             return;
         }
 
         if (!this.newWidget.dimension.newUrl || this.newWidget.dimension.newUrl.trim().length === 0) {
-            this.translate.get('Please enter a URL for the widget').subscribe((res: string) => {this.toaster.pop("warning", res); });
+            if (this.translate) {this.translate.get("Please enter a URL for the widget").subscribe((res: string) => {this.toaster.pop("warning", res ); }); }
             return;
         }
 
@@ -280,7 +279,7 @@ export class WidgetComponent implements OnInit {
                 this.isUpdating = false;
                 this.OnWidgetAfterAdd(this.newWidget);
                 this.prepareNewWidget();
-                this.translate.get('Widget added!').subscribe((res: string) => {this.toaster.pop("success", res); });
+                this.toaster.pop("success", "Widget added!");
             })
             .catch(err => {
                 this.isUpdating = false;
@@ -304,7 +303,7 @@ export class WidgetComponent implements OnInit {
         }
 
         if (!widget.dimension.newUrl || widget.dimension.newUrl.trim().length === 0) {
-            this.translate.get('Please enter a URL for the widget').subscribe((res: string) => {this.toaster.pop("warning", res); });
+            this.toaster.pop("warning", "Please enter a URL for the widget");
             return;
         }
 
@@ -315,7 +314,7 @@ export class WidgetComponent implements OnInit {
             .then(() => {
                 this.isUpdating = false;
                 this.OnWidgetAfterEdit(widget);
-                this.translate.get('Widget updated!').subscribe((res: string) => {this.toaster.pop("success", res); });
+                this.toaster.pop("success", "Widget updated!");
             })
             .catch(err => {
                 this.isUpdating = false;
@@ -337,7 +336,7 @@ export class WidgetComponent implements OnInit {
             .then(() => {
                 this.isUpdating = false;
                 this.OnWidgetAfterDelete(widget);
-                this.translate.get('Widget deleted!').subscribe((res: string) => {this.toaster.pop("success", res); });
+                this.toaster.pop("success", "Widget deleted!");
             })
             .catch(err => {
                 this.isUpdating = false;

@@ -60,9 +60,7 @@ export class AdminIrcBridgeNetworksComponent implements ModalComponent<IrcNetwor
             this.isUpdating = false;
             network.isEnabled = !network.isEnabled;
             this.bridge.availableNetworks[network.id].isEnabled = network.isEnabled;
-            let errorMassage: string;
-            this.translate.get('Failed to update network').subscribe((res: string) => {errorMassage = res});
-            this.toaster.pop("error", errorMassage);
+            this.translate.get('Failed to update network').subscribe((res: string) => {this.toaster.pop("error", res); });
         });
     }
 }
