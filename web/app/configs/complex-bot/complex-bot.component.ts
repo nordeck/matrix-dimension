@@ -6,7 +6,6 @@ import { IntegrationsApiService } from "../../shared/services/integrations/integ
 import { ToasterService } from "angular2-toaster";
 import { ServiceLocator } from "../../shared/registry/locator.service";
 import { ScalarClientApiService } from "../../shared/services/scalar/scalar-client-api.service";
-import { TranslateService } from "@ngx-translate/core";
 
 export class ComplexBotComponent<T> implements OnInit, OnDestroy {
 
@@ -23,9 +22,7 @@ export class ComplexBotComponent<T> implements OnInit, OnDestroy {
     protected route = ServiceLocator.injector.get(ActivatedRoute);
     protected scalarClientApi = ServiceLocator.injector.get(ScalarClientApiService);
 
-    constructor(private integrationType: string,
-                public translate?: TranslateService) {
-        this.translate = translate;
+    constructor(private integrationType: string) {
         this.isLoading = true;
         this.isUpdating = false;
     }
@@ -53,20 +50,20 @@ export class ComplexBotComponent<T> implements OnInit, OnDestroy {
             this.isLoading = false;
         }).catch(err => {
             console.error(err);
-            this.translate.get('Failed to load configuration').subscribe((res: string) => {this.toaster.pop("error", res); });
+            this.toaster.pop("error", "Failed to load configuration");
         });
     }
 
     public save(): void {
         this.isUpdating = true;
         this.integrationsApi.setIntegrationConfiguration("complex-bot", this.integrationType, this.roomId, this.newConfig).then(() => {
-            this.translate.get('Configuration updated').subscribe((res: string) => {this.toaster.pop("success", res); });
+            this.toaster.pop("success", "Configuration updated");
             this.bot.config = this.newConfig;
             this.newConfig = JSON.parse(JSON.stringify(this.bot.config));
             this.isUpdating = false;
         }).catch(err => {
             console.error(err);
-            this.translate.get('Error updating configuration').subscribe((res: string) => {this.toaster.pop("error", res); });
+            this.toaster.pop("error", "Error updating configuration");
             this.isUpdating = false;
         });
     }
