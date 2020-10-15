@@ -20,9 +20,7 @@ export class PageHeaderComponent {
             while (currentRoute.children.length > 0) {
                 let children = currentRoute.children;
                 children.forEach(route => {
-                    console.log('ROUTER', route.snapshot.data);
                     if (route.snapshot.data['breadcrumb']){this.translate.get(route.snapshot.data['breadcrumb']).subscribe((res: string) => {route.snapshot.data['breadcrumb'] = res}); }
-                    console.log('NEW ROUTER', route.snapshot.data['breadcrumb']);
                     currentRoute = route;
                     url += "/" + route.snapshot.url.map(s => s.path).join("/");
                     if (route.outlet !== PRIMARY_OUTLET) return;
