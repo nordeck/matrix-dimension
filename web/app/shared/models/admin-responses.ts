@@ -13,6 +13,9 @@ export interface FE_DimensionConfig {
     sessionInfo: {
         numTokens: number;
     };
+    whiteboard: {
+        whiteboardUrl: string;
+    }
 }
 
 export interface FE_DimensionVersion {
