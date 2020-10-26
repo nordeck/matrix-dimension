@@ -5,7 +5,7 @@ import * as url from "url";
 import { SessionStorage } from "../../../shared/SessionStorage";
 import { NameService } from "../../../shared/services/name.service";
 import { FE_WhiteBoardWidget } from "../../../shared/models/integration";
-import {AdminApiService} from "../../../shared/services/admin/admin-api.service";
+import {UserApiService} from "../../../shared/services/dimension/user-api.service";
 
 @Component({
     templateUrl: "whiteboard.widget.component.html",
@@ -14,7 +14,7 @@ import {AdminApiService} from "../../../shared/services/admin/admin-api.service"
 export class WhiteboardWidgetComponent extends WidgetComponent {
     private whiteBoardWidget: FE_WhiteBoardWidget = <FE_WhiteBoardWidget>SessionStorage.editIntegration;
 
-    constructor(private nameService: NameService, private adminApiService: AdminApiService) {
+    constructor(private nameService: NameService, private userApiService: UserApiService) {
         super(WIDGET_WHITEBOARD, "Whiteboard", "generic", "whiteboard", "boardName");
     }
     protected OnWidgetsDiscovered(widgets: EditableWidget[]): void {
@@ -23,7 +23,7 @@ export class WhiteboardWidgetComponent extends WidgetComponent {
             if (!widget.dimension.newUrl.startsWith("http://") && !widget.dimension.newUrl.startsWith("https://")) {
                 const parsedUrl = url.parse(widget.url, true);
                 const boardName = parsedUrl.query["boardName"];
-                this.adminApiService.getConfig().then( (config) => {
+                this.userApiService.getConfig().then( (config) => {
                     // Set the new URL so that it unpacks correctly
                     widget.url = `${config.whiteboard.whiteboardUrl}/?whiteboardid=${boardName}`;
                 });
@@ -33,7 +33,7 @@ export class WhiteboardWidgetComponent extends WidgetComponent {
 
     protected OnNewWidgetPrepared(widget: EditableWidget): void {
         const name = this.nameService.getHumanReadableName();
-        this.adminApiService.getConfig().then( (config) => {
+        this.userApiService.getConfig().then( (config) => {
         let template = `${config.whiteboard.whiteboardUrl}/?whiteboardid=$roomId_$boardName`;
         if (this.whiteBoardWidget.options && this.whiteBoardWidget.options.defaultUrl) {
             template = this.whiteBoardWidget.options.defaultUrl;

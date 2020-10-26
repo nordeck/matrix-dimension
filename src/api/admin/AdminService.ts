@@ -24,9 +24,6 @@ interface DimensionConfigResponse {
     sessionInfo: {
         numTokens: number;
     };
-    whiteboard: {
-        whiteboardUrl: string;
-    }
 }
 
 /**
@@ -68,9 +65,6 @@ export class AdminService {
             sessionInfo: {
                 numTokens: await UserScalarToken.count(),
             },
-            whiteboard: {
-                whiteboardUrl: config.whiteboard.whiteboardUrl,
-            }
         };
     }
 
