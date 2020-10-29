@@ -13,7 +13,7 @@ interface DimensionUserConfigResponse {
  * Administrative API for general information about Dimension
  */
 @Path("/api/v1/dimension")
-export class AdminService {
+export class DimensionUserService {
 
     @GET
     @Path("config")
