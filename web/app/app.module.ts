@@ -119,6 +119,7 @@ import { AdminNewEditTermsComponent } from "./admin/terms/new-edit/new-edit.comp
 import { AdminTermsNewEditPublishDialogComponent } from "./admin/terms/new-edit/publish/publish.component";
 import { TermsWidgetWrapperComponent } from "./widget-wrappers/terms/terms.component";
 import { WhiteboardWidgetComponent } from "./configs/widget/whiteboard/whiteboard.widget.component";
+import {UserApiService} from "./shared/services/dimension/user-api.service";
 
 @NgModule({
     imports: [
@@ -222,6 +223,7 @@ import { WhiteboardWidgetComponent } from "./configs/widget/whiteboard/whiteboar
     ],
     providers: [
         AdminApiService,
+        UserApiService,
         AdminIntegrationsApiService,
         IntegrationsApiService,
         WidgetApiService,
