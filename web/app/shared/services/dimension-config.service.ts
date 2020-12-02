@@ -8,7 +8,7 @@ interface DimensionConfigResponse {
 /**
  * API for config information about etherpad and whiteboard widgets
  */
-@Path("/api/v1/dimension/config")
+@Path("/api/v1/dimension")
 export class DimensionConfigService {
     @GET
     @Path("config")
