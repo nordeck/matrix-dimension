@@ -37,6 +37,7 @@ export interface DimensionConfig {
         publicUrl: string;
     };
     logging: LogConfig;
+    etherpadEndpoint: string;
 }
 
 export default <DimensionConfig>config;

@@ -5,5 +5,5 @@ export interface FE_IntegrationsResponse {
     bridges: FE_Bridge<any>[];
 }
 export interface FE_DimensionConfig {
-//todo: add etherpad and whiteboard widget endpoints
+    etherpadEndpoint: string;
 }
