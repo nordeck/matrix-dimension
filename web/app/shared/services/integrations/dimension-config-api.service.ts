@@ -4,7 +4,7 @@ import { FE_DimensionConfig } from "../../models/dimension-responses";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable()
-export class AdminApiService extends AuthedApi {
+export class DimensionConfigApiService extends AuthedApi {
     constructor(http: HttpClient) {
         super(http);
     }
