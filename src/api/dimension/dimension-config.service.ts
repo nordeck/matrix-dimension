@@ -1,9 +1,8 @@
 import { GET, Path, Security } from "typescript-rest";
 import { ROLE_ADMIN, ROLE_USER } from "../../../../src/api/security/MatrixSecurity";
-import config from "../../../../src/config";
 
 interface DimensionConfigResponse {
-    etherpadEndpoint: string;
+    //todo: add etherpad and whiteboard widget endpoints
 }
 
 /**
@@ -15,8 +14,9 @@ export class DimensionConfigService {
     @Path("config")
     @Security([ROLE_USER, ROLE_ADMIN])
     public async getConfig(): Promise<DimensionConfigResponse> {
+        console.log('<<etherpad endpoint', config.etherpadEndpoint);
         return {
-            etherpadEndpoint: config.etherpadEndpoint
+            //todo: add etherpad and whiteboard widget endpoints
         };
     }
 }
