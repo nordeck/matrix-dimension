@@ -5,7 +5,5 @@ export interface FE_IntegrationsResponse {
     bridges: FE_Bridge<any>[];
 }
 export interface FE_DimensionConfig {
-    whiteboard: {
-        whiteboardUrl: string;
-    }
+    whiteboardEndpoint: string;
 }

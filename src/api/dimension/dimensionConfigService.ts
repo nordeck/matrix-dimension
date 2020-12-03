@@ -21,7 +21,7 @@ export class DimensionConfigService {
     public async getConfig(): Promise<DimensionUserConfigResponse> {
         return {
             whiteboard: {
-                whiteboardUrl: config.whiteboard.whiteboardUrl,
+                whiteboardUrl: config.whiteboardEndpoint,
             }
         };
     }
