@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { AuthedApi } from "../authed-api";
-import { FE_DimensionConfig } from "../../models/dimension-responses";
+import { AuthedApi } from "./authed-api";
+import { FE_DimensionConfig } from "../models/dimension-responses";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable()
