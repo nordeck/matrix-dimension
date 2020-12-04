@@ -37,7 +37,7 @@ export interface DimensionConfig {
         publicUrl: string;
     };
     logging: LogConfig;
-    whiteboardEndpoint: string;
+    whiteboardEndPoint: string;
 }
 
 export default <DimensionConfig>config;
