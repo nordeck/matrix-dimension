@@ -249,6 +249,7 @@ import { DimensionConfigApiService } from "./shared/services/dimension-config-ap
         AdminSlackApiService,
         ToasterService,
         AdminTermsApiService,
+        DimensionConfigApiService,
         {provide: Window, useValue: window},
 
         // Vendor
