@@ -4,9 +4,7 @@ import { ROLE_ADMIN, ROLE_USER } from "../security/MatrixSecurity";
 
 
 interface DimensionUserConfigResponse {
-    whiteboard: {
-        whiteboardUrl: string;
-    }
+        whiteboardEndPoint: string;
 }
 
 /**
@@ -20,9 +18,7 @@ export class DimensionConfigService {
     @Security([ROLE_USER, ROLE_ADMIN])
     public async getConfig(): Promise<DimensionUserConfigResponse> {
         return {
-            whiteboard: {
-                whiteboardUrl: config.whiteboardEndpoint,
-            }
+            whiteboardEndPoint: config.whiteboardEndPoint
         };
     }
 }

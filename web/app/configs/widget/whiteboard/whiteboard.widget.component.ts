@@ -25,7 +25,7 @@ export class WhiteboardWidgetComponent extends WidgetComponent {
                 const boardName = parsedUrl.query["boardName"];
                 this.dimensionConfigApiService.getConfig().then( (config) => {
                     // Set the new URL so that it unpacks correctly
-                    widget.url = `${config.whiteboardEndpoint}/?whiteboardid=${boardName}`;
+                    widget.url = `${config.whiteboardEndPoint}/?whiteboardid=${boardName}`;
                 });
             }
         }
@@ -34,8 +34,8 @@ export class WhiteboardWidgetComponent extends WidgetComponent {
     protected OnNewWidgetPrepared(widget: EditableWidget): void {
         const name = this.nameService.getHumanReadableName();
         this.dimensionConfigApiService.getConfig().then( (config) => {
-        let template = `${config.whiteboardEndpoint}/?whiteboardid=$roomId_$boardName`;
-        if (!config.whiteboardEndpoint) {
+        let template = `${config.whiteboardEndPoint}/?whiteboardid=$roomId_$boardName`;
+        if (!config.whiteboardEndPoint) {
             template = this.whiteBoardWidget.options.defaultUrl;
         }
 
