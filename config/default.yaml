@@ -101,5 +101,6 @@ logging:
     size: 52428800 # bytes, default is 50mb
     count: 5
 
-whiteboard:
-  whiteboardUrl: "https://whiteboard-dev.nordeck.net"
+# This is where Whiteboard is accessible from clients. Be sure to set this
+# to your own Whiteboard instance
+whiteboardEndPoint: "https://cloud13.de/testwhiteboard"
