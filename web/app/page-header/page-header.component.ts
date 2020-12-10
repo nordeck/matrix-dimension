@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, PRIMARY_OUTLET, Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: "my-page-header",
@@ -10,7 +11,7 @@ export class PageHeaderComponent {
 
     public pageName: string;
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    constructor(private router: Router, private activatedRoute: ActivatedRoute, public translate: TranslateService) {
         this.router.events.filter(ev => ev instanceof NavigationEnd).subscribe((ev: NavigationEnd) => {
             let currentRoute = this.activatedRoute.root;
             let url = "";
@@ -18,6 +19,9 @@ export class PageHeaderComponent {
             while (currentRoute.children.length > 0) {
                 let children = currentRoute.children;
                 children.forEach(route => {
+                    console.log('ROUTER', route.snapshot.data);
+                    if(route.snapshot.data['breadcrumb']){this.translate.get(route.snapshot.data['breadcrumb']).subscribe((res: string) => {route.snapshot.data['breadcrumb'] = res});}
+                    console.log('NEW ROUTER', route.snapshot.data['breadcrumb']);
                     currentRoute = route;
                     url += "/" + route.snapshot.url.map(s => s.path).join("/");
                     if (route.outlet !== PRIMARY_OUTLET) return;

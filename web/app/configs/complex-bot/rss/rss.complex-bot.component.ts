@@ -1,6 +1,7 @@
 import { ComplexBotComponent } from "../complex-bot.component";
 import { Component } from "@angular/core";
 import { SessionStorage } from "../../../shared/SessionStorage";
+import { TranslateService } from "@ngx-translate/core";
 
 interface RssConfig {
     feeds: {
@@ -24,13 +25,15 @@ export class RssComplexBotConfigComponent extends ComplexBotComponent<RssConfig>
 
     public newFeedUrl = "";
 
-    constructor() {
+    constructor(public translate?: TranslateService) {
         super("rss");
     }
 
     public addFeed(): void {
         if (!this.newFeedUrl.trim()) {
-            this.toaster.pop('warning', 'Please enter a feed URL');
+            let message: string;
+            this.translate.get('Please enter a feed URL').subscribe((res: string) => {message = res});
+            this.toaster.pop('warning', message);
             return;
         }
 

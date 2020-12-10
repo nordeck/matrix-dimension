@@ -4,6 +4,7 @@ import { ScalarClientApiService } from "../../shared/services/scalar/scalar-clie
 import { ServiceLocator } from "../../shared/registry/locator.service";
 import { SessionStorage } from "../../shared/SessionStorage";
 import { OnInit } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 
 const SCALAR_WIDGET_LINKS = [
     "https://scalar-staging.riot.im/scalar/api/widgets/__TYPE__.html?__PNAME__=",
@@ -34,9 +35,11 @@ export class WidgetComponent implements OnInit {
                 public defaultName: string,
                 private wrapperId = "generic",
                 private scalarWrapperId = null,
-                private scalarWrapperUrlParamName = "url") {
+                private scalarWrapperUrlParamName = "url",
+                public translate?: TranslateService) {
         this.isLoading = true;
         this.isUpdating = false;
+        this.translate = translate;
     }
 
     public ngOnInit(): void {
@@ -263,7 +266,9 @@ export class WidgetComponent implements OnInit {
         }
 
         if (!this.newWidget.dimension.newUrl || this.newWidget.dimension.newUrl.trim().length === 0) {
-            this.toaster.pop("warning", "Please enter a URL for the widget");
+            let message: string;
+            this.translate.get('Please enter a URL for the widget').subscribe((res: string) => {message = res});
+            this.toaster.pop("warning", message);
             return;
         }
 
@@ -276,7 +281,9 @@ export class WidgetComponent implements OnInit {
                 this.isUpdating = false;
                 this.OnWidgetAfterAdd(this.newWidget);
                 this.prepareNewWidget();
-                this.toaster.pop("success", "Widget added!");
+                let message: string;
+                this.translate.get('Widget added!').subscribe((res: string) => {message = res});
+                this.toaster.pop("success", message);
             })
             .catch(err => {
                 this.isUpdating = false;
@@ -300,7 +307,9 @@ export class WidgetComponent implements OnInit {
         }
 
         if (!widget.dimension.newUrl || widget.dimension.newUrl.trim().length === 0) {
-            this.toaster.pop("warning", "Please enter a URL for the widget");
+            let message: string;
+            this.translate.get('Please enter a URL for the widget').subscribe((res: string) => {message = res});
+            this.toaster.pop("warning", message);
             return;
         }
 
@@ -311,7 +320,9 @@ export class WidgetComponent implements OnInit {
             .then(() => {
                 this.isUpdating = false;
                 this.OnWidgetAfterEdit(widget);
-                this.toaster.pop("success", "Widget updated!");
+                let message: string;
+                this.translate.get('Widget updated!').subscribe((res: string) => {message = res});
+                this.toaster.pop("success", message);
             })
             .catch(err => {
                 this.isUpdating = false;
@@ -333,7 +344,9 @@ export class WidgetComponent implements OnInit {
             .then(() => {
                 this.isUpdating = false;
                 this.OnWidgetAfterDelete(widget);
-                this.toaster.pop("success", "Widget deleted!");
+                let message: string;
+                this.translate.get('Widget deleted!').subscribe((res: string) => {message = res});
+                this.toaster.pop("success", message);
             })
             .catch(err => {
                 this.isUpdating = false;
