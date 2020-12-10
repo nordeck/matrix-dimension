@@ -5,6 +5,7 @@ import { FE_EtherpadWidget } from "../../../shared/models/integration";
 import { SessionStorage } from "../../../shared/SessionStorage";
 import { NameService } from "../../../shared/services/name.service";
 import * as url from "url";
+import { DimensionConfigApiService } from "../../../shared/services/dimension-config-api.service";
 
 @Component({
     templateUrl: "etherpad.widget.component.html",
@@ -14,7 +15,7 @@ export class EtherpadWidgetConfigComponent extends WidgetComponent {
 
     private etherpadWidget: FE_EtherpadWidget = <FE_EtherpadWidget>SessionStorage.editIntegration;
 
-    constructor(private nameService: NameService) {
+    constructor(private nameService: NameService, private dimensionConfigApiService: DimensionConfigApiService) {
         super(WIDGET_ETHERPAD, "Etherpad", "generic", "etherpad", "padName");
     }
 
@@ -26,7 +27,9 @@ export class EtherpadWidgetConfigComponent extends WidgetComponent {
                 const padName = parsedUrl.query["padName"];
 
                 // Set the new URL so that it unpacks correctly
-                widget.url = `https://scalar.vector.im/etherpad/p/${padName}`;
+                this.dimensionConfigApiService.getConfig().then(config => {
+                    widget.url = `${config.etherpadEndPoint}/p/${padName}`;
+                })
             }
         }
     }
@@ -34,8 +37,9 @@ export class EtherpadWidgetConfigComponent extends WidgetComponent {
     protected OnNewWidgetPrepared(widget: EditableWidget): void {
         const name = this.nameService.getHumanReadableName();
 
-        let template = "https://scalar.vector.im/etherpad/p/$roomId_$padName";
-        if (this.etherpadWidget.options && this.etherpadWidget.options.defaultUrl) {
+        this.dimensionConfigApiService.getConfig().then(config => {
+        let template = `${config.etherpadEndPoint}/p/$roomId_$padName`;
+        if (!config.etherpadEndPoint) {
             template = this.etherpadWidget.options.defaultUrl;
         }
 
@@ -44,5 +48,6 @@ export class EtherpadWidgetConfigComponent extends WidgetComponent {
 
         widget.dimension.newUrl = template;
         widget.dimension.newName = name;
+        });
     }
 }
