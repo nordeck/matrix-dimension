@@ -11,7 +11,7 @@ import {
     WIDGET_TRADINGVIEW,
     WIDGET_TWITCH,
     WIDGET_YOUTUBE,
-    WIDGET_MEETING
+    WIDGET_MEETINGS
 } from "../models/widget";
 import { FE_Integration } from "../models/integration";
 
@@ -67,7 +67,7 @@ export class IntegrationsRegistry {
                 types: WIDGET_STICKER_PICKER,
             },
             "meeting": {
-                types: WIDGET_MEETING
+                types: WIDGET_MEETINGS
         }
         },
     };
