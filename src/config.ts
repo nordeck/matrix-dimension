@@ -38,6 +38,7 @@ export interface DimensionConfig {
     };
     logging: LogConfig;
     whiteboardEndPoint: string;
+    etherpadEndPoint: string;
 }
 
 export default <DimensionConfig>config;

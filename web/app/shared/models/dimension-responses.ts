@@ -6,4 +6,5 @@ export interface FE_IntegrationsResponse {
 }
 export interface FE_DimensionConfig {
     whiteboardEndPoint: string;
+    etherpadEndPoint: string;
 }
