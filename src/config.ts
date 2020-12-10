@@ -37,6 +37,7 @@ export interface DimensionConfig {
         publicUrl: string;
     };
     logging: LogConfig;
+    whiteboardEndPoint: string;
     etherpadEndPoint: string;
 }
 

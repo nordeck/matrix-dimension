@@ -118,6 +118,7 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { AdminNewEditTermsComponent } from "./admin/terms/new-edit/new-edit.component";
 import { AdminTermsNewEditPublishDialogComponent } from "./admin/terms/new-edit/publish/publish.component";
 import { TermsWidgetWrapperComponent } from "./widget-wrappers/terms/terms.component";
+import { WhiteboardWidgetComponent } from "./configs/widget/whiteboard/whiteboard.widget.component";
 import { DimensionConfigApiService } from "./shared/services/dimension-config-api.service";
 
 @NgModule({
@@ -216,11 +217,13 @@ import { DimensionConfigApiService } from "./shared/services/dimension-config-ap
         AdminNewEditTermsComponent,
         AdminTermsNewEditPublishDialogComponent,
         TermsWidgetWrapperComponent,
+        WhiteboardWidgetComponent
 
         // Vendor
     ],
     providers: [
         AdminApiService,
+        DimensionConfigApiService,
         AdminIntegrationsApiService,
         IntegrationsApiService,
         WidgetApiService,
