@@ -4,6 +4,7 @@ import { FE_SlackChannel, FE_SlackLink, FE_SlackTeam } from "../../../shared/mod
 import { SlackApiService } from "../../../shared/services/integrations/slack-api.service";
 import { ScalarClientApiService } from "../../../shared/services/scalar/scalar-client-api.service";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
+import { TranslateService } from "@ngx-translate/core";
 
 interface SlackConfig {
     botUserId: string;
@@ -27,7 +28,7 @@ export class SlackBridgeConfigComponent extends BridgeComponent<SlackConfig> imp
 
     private timerId: any;
 
-    constructor(private slack: SlackApiService, private scalar: ScalarClientApiService, private sanitizer: DomSanitizer) {
+    constructor(private slack: SlackApiService, private scalar: ScalarClientApiService, private sanitizer: DomSanitizer, public translate: TranslateService) {
         super("slack");
     }
 
@@ -58,7 +59,9 @@ export class SlackBridgeConfigComponent extends BridgeComponent<SlackConfig> imp
                         this.loadingTeams = false;
                     }).catch(error2 => {
                         console.error(error2);
-                        this.toaster.pop("error", "Error getting Slack authorization information");
+                        let message: string;
+                        this.translate.get('Error getting Slack authorization information').subscribe((res: string) => {message = res});
+                        this.toaster.pop("error", message);
                     });
 
                     this.timerId = setInterval(() => {
@@ -67,7 +70,9 @@ export class SlackBridgeConfigComponent extends BridgeComponent<SlackConfig> imp
                 }
             } else {
                 console.error(error);
-                this.toaster.pop("error", "Error getting teams");
+                let message: string;
+                this.translate.get('Error getting teams').subscribe((res: string) => {message = res});
+                this.toaster.pop("error", message);
             }
         });
     }
@@ -84,7 +89,9 @@ export class SlackBridgeConfigComponent extends BridgeComponent<SlackConfig> imp
             this.isBusy = false;
         }).catch(error => {
             console.error(error);
-            this.toaster.pop("error", "Error getting channels for team");
+            let message: string;
+            this.translate.get('Error getting channels for team').subscribe((res: string) => {message = res});
+            this.toaster.pop("error", message);
             this.isBusy = false;
         });
     }
@@ -98,7 +105,9 @@ export class SlackBridgeConfigComponent extends BridgeComponent<SlackConfig> imp
             if (!e.response || !e.response.error || !e.response.error._error ||
                 e.response.error._error.message.indexOf("already in the room") === -1) {
                 this.isBusy = false;
-                this.toaster.pop("error", "Error inviting bridge");
+                let message: string;
+                this.translate.get('Error inviting bridge').subscribe((res: string) => {message = res});
+                this.toaster.pop("error", message);
                 return;
             }
         }
@@ -106,11 +115,15 @@ export class SlackBridgeConfigComponent extends BridgeComponent<SlackConfig> imp
         this.slack.bridgeRoom(this.roomId, this.teamId, this.channelId).then(link => {
             this.bridge.config.link = link;
             this.isBusy = false;
-            this.toaster.pop("success", "Bridge requested");
+            let message: string;
+            this.translate.get('Bridge requested').subscribe((res: string) => {message = res});
+            this.toaster.pop("success", message);
         }).catch(error => {
             this.isBusy = false;
             console.error(error);
-            this.toaster.pop("error", "Error requesting bridge");
+            let message: string;
+            this.translate.get('Error requesting bridge').subscribe((res: string) => {message = res});
+            this.toaster.pop("error", message);
         });
     }
 
@@ -119,11 +132,15 @@ export class SlackBridgeConfigComponent extends BridgeComponent<SlackConfig> imp
         this.slack.unbridgeRoom(this.roomId).then(() => {
             this.bridge.config.link = null;
             this.isBusy = false;
-            this.toaster.pop("success", "Bridge removed");
+            let message: string;
+            this.translate.get('Bridge removed').subscribe((res: string) => {message = res});
+            this.toaster.pop("success", message);
         }).catch(error => {
             this.isBusy = false;
             console.error(error);
-            this.toaster.pop("error", "Error removing bridge");
+            let message: string;
+            this.translate.get('Error removing bridge').subscribe((res: string) => {message = res});
+            this.toaster.pop("error", message);
         });
     }
 }

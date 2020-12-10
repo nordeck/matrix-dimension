@@ -3,6 +3,7 @@ import { BridgeComponent } from "../bridge.component";
 import { FE_GitterLink } from "../../../shared/models/gitter";
 import { GitterApiService } from "../../../shared/services/integrations/gitter-api.service";
 import { ScalarClientApiService } from "../../../shared/services/scalar/scalar-client-api.service";
+import { TranslateService } from "@ngx-translate/core";
 
 interface GitterConfig {
     botUserId: string;
@@ -18,7 +19,7 @@ export class GitterBridgeConfigComponent extends BridgeComponent<GitterConfig> {
     public gitterRoomName: string;
     public isBusy: boolean;
 
-    constructor(private gitter: GitterApiService, private scalar: ScalarClientApiService) {
+    constructor(private gitter: GitterApiService, private scalar: ScalarClientApiService, public translate: TranslateService) {
         super("gitter");
     }
 
@@ -35,7 +36,9 @@ export class GitterBridgeConfigComponent extends BridgeComponent<GitterConfig> {
             if (!e.response || !e.response.error || !e.response.error._error ||
                 e.response.error._error.message.indexOf("already in the room") === -1) {
                 this.isBusy = false;
-                this.toaster.pop("error", "Error inviting bridge");
+                let message: string;
+                this.translate.get('Error inviting bridge').subscribe((res: string) => {message = res});
+                this.toaster.pop("error", message);
                 return;
             }
         }
@@ -43,11 +46,15 @@ export class GitterBridgeConfigComponent extends BridgeComponent<GitterConfig> {
         this.gitter.bridgeRoom(this.roomId, this.gitterRoomName).then(link => {
             this.bridge.config.link = link;
             this.isBusy = false;
-            this.toaster.pop("success", "Bridge requested");
+            let message: string;
+            this.translate.get('Bridge requested').subscribe((res: string) => {message = res});
+            this.toaster.pop("success", message);
         }).catch(error => {
             this.isBusy = false;
             console.error(error);
-            this.toaster.pop("error", "Error requesting bridge");
+            let message: string;
+            this.translate.get('Error requesting bridge').subscribe((res: string) => {message = res});
+            this.toaster.pop("error", message);
         });
     }
 
@@ -56,11 +63,15 @@ export class GitterBridgeConfigComponent extends BridgeComponent<GitterConfig> {
         this.gitter.unbridgeRoom(this.roomId).then(() => {
             this.bridge.config.link = null;
             this.isBusy = false;
-            this.toaster.pop("success", "Bridge removed");
+            let message: string;
+            this.translate.get('Bridge removed').subscribe((res: string) => {message = res});
+            this.toaster.pop("success", message);
         }).catch(error => {
             this.isBusy = false;
             console.error(error);
-            this.toaster.pop("error", "Error removing bridge");
+            let message: string;
+            this.translate.get('Error removing bridge').subscribe((res: string) => {message = res});
+            this.toaster.pop("error", message);
         });
     }
 }

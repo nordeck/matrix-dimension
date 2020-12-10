@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { WidgetApiService } from "../../shared/services/integrations/widget-api.service";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { ToasterService } from "angular2-toaster";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: "my-terms-widget-wrapper",
@@ -17,7 +18,8 @@ export class TermsWidgetWrapperComponent implements OnInit {
     constructor(private activatedRoute: ActivatedRoute,
                 private sanitizer: DomSanitizer,
                 private toaster: ToasterService,
-                private widgetApi: WidgetApiService) {
+                private widgetApi: WidgetApiService,
+                public translate: TranslateService) {
     }
 
     public ngOnInit(): void {
@@ -28,7 +30,9 @@ export class TermsWidgetWrapperComponent implements OnInit {
             this.isLoading = false;
         }).catch(err => {
             console.error(err);
-            this.toaster.pop("error", "Error loading policy");
+            let message: string;
+            this.translate.get('Error loading policy').subscribe((res: string) => {message = res});
+            this.toaster.pop("error", message);
         });
     }
 }
