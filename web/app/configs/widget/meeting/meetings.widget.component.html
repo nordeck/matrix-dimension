@@ -4,7 +4,7 @@
             {{'Meetings Name'}}
             <input type="text" class="form-control"
                    placeholder="{{ defaultName }}"
-                   name="widget-name-{{widget.id}}"
+                   [(ngModel)]="widget.dimension.newName" name="widget-name-{{widget.id}}"
                    [disabled]="isUpdating"/>
         </label>
         <label class="label-block">
