@@ -118,7 +118,7 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { AdminNewEditTermsComponent } from "./admin/terms/new-edit/new-edit.component";
 import { AdminTermsNewEditPublishDialogComponent } from "./admin/terms/new-edit/publish/publish.component";
 import { TermsWidgetWrapperComponent } from "./widget-wrappers/terms/terms.component";
-import { MeetingWidgetComponent } from "./configs/widget/meeting/meeting.widget.component";
+import { MeetingsWidgetComponent } from "./configs/widget/meeting/meetings.widget.component";
 
 @NgModule({
     imports: [
@@ -216,7 +216,7 @@ import { MeetingWidgetComponent } from "./configs/widget/meeting/meeting.widget.
         AdminNewEditTermsComponent,
         AdminTermsNewEditPublishDialogComponent,
         TermsWidgetWrapperComponent,
-        MeetingWidgetComponent
+        MeetingsWidgetComponent
 
         // Vendor
     ],

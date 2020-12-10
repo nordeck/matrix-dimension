@@ -1,19 +1,19 @@
 import { WidgetComponent } from "../widget.component";
 import { Component } from "@angular/core";
-import { EditableWidget, WIDGET_MEETING } from "../../../shared/models/widget";
+import { EditableWidget, WIDGET_MEETINGS } from "../../../shared/models/widget";
 import { SessionStorage } from "../../../shared/SessionStorage";
-import { FE_MeetingWidget } from "../../../shared/models/integration";
+import { FE_MeetingsWidget } from "../../../shared/models/integration";
 
 @Component({
-    templateUrl: "meeting.widget.component.html",
-    styleUrls: ["meeting.widget.component.scss"],
+    templateUrl: "meetings.widget.component.html",
+    styleUrls: ["meetings.widget.component.scss"],
 })
-export class MeetingWidgetComponent extends WidgetComponent {
-    private meetingWidget: FE_MeetingWidget = <FE_MeetingWidget>SessionStorage.editIntegration;
+export class MeetingsWidgetComponent extends WidgetComponent {
+    private meetingWidget: FE_MeetingsWidget = <FE_MeetingsWidget>SessionStorage.editIntegration;
 
    // constructor(private nameService: NameService) {
     constructor() {
-        super(WIDGET_MEETING, "meetings", "generic", "meeting", "");
+        super(WIDGET_MEETINGS, "meetings", "generic", "meeting", "");
     }
     protected OnWidgetsDiscovered(widgets: EditableWidget[]): void {
         console.log(widgets);

@@ -47,7 +47,7 @@ import { ManagerTestWidgetWrapperComponent } from "./widget-wrappers/manager-tes
 import { AdminTermsComponent } from "./admin/terms/terms.component";
 import { AdminNewEditTermsComponent } from "./admin/terms/new-edit/new-edit.component";
 import { TermsWidgetWrapperComponent } from "./widget-wrappers/terms/terms.component";
-import { MeetingWidgetComponent } from "./configs/widget/meeting/meeting.widget.component";
+import { MeetingsWidgetComponent } from "./configs/widget/meeting/meetings.widget.component";
 
 const routes: Routes = [
     {path: "", component: HomeComponent},
@@ -228,7 +228,7 @@ const routes: Routes = [
                     },
                     {
                         path: "meeting",
-                        component: MeetingWidgetComponent,
+                        component: MeetingsWidgetComponent,
                         data: {breadcrumb: "Meetings Widgets", name: "Meetings Widgets"},
                     },
                 ],

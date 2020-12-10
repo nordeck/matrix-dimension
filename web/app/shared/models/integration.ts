@@ -88,7 +88,7 @@ export interface FE_JitsiWidget extends FE_Widget {
     };
 }
 
-export interface FE_MeetingWidget extends FE_Widget {
+export interface FE_MeetingsWidget extends FE_Widget {
     options: {
         defaultUrl: string;
     };
