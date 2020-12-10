@@ -229,7 +229,7 @@ const routes: Routes = [
                     {
                         path: "meeting",
                         component: MeetingWidgetComponent,
-                        data: {breadcrumb: "Meeting Widgets", name: "Meeting Widgets"},
+                        data: {breadcrumb: "Meetings Widgets", name: "Meetings Widgets"},
                     },
                 ],
             },
