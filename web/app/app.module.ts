@@ -119,6 +119,7 @@ import { AdminNewEditTermsComponent } from "./admin/terms/new-edit/new-edit.comp
 import { AdminTermsNewEditPublishDialogComponent } from "./admin/terms/new-edit/publish/publish.component";
 import { TermsWidgetWrapperComponent } from "./widget-wrappers/terms/terms.component";
 import { WhiteboardWidgetComponent } from "./configs/widget/whiteboard/whiteboard.widget.component";
+import { AdminWidgetWhiteboardConfigComponent } from "./admin/widgets/whiteboard/whiteboard.component";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
@@ -230,7 +231,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         AdminNewEditTermsComponent,
         AdminTermsNewEditPublishDialogComponent,
         TermsWidgetWrapperComponent,
-        WhiteboardWidgetComponent
+        WhiteboardWidgetComponent,
+        AdminWidgetWhiteboardConfigComponent
 
         // Vendor
     ],
@@ -287,6 +289,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         AdminSlackBridgeManageSelfhostedComponent,
         AdminLogoutConfirmationDialogComponent,
         AdminTermsNewEditPublishDialogComponent,
+        AdminWidgetWhiteboardConfigComponent
     ]
 })
 export class AppModule {
