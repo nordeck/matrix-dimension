@@ -68,7 +68,7 @@ export class AdminWidgetsComponent {
     }
 
     public hasConfiguration(widget: FE_Widget) {
-        // Currently only Jitsi and Etherpad have additional configuration
+        // Currently only Jitsi and Etherpad and whiteboard have additional configuration
         return widget.type === "jitsi" || widget.type === "etherpad" || widget.type === "whiteboard";
     }
 }
