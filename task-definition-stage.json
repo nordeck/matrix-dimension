@@ -1,0 +1,60 @@
+{
+    "family": "nic-rooms-dimension-stage",
+    "networkMode": "bridge",
+    "containerDefinitions": [
+        {
+            "name": "nic-rooms-dimension",
+            "image": "751489943657.dkr.ecr.eu-central-1.amazonaws.com/nic-rooms-dimension:stage-latest",
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "secretOptions": null,
+                "options": {
+                    "awslogs-group": "/ecs/nic-rooms-dimension-stage",
+                    "awslogs-region": "eu-central-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "portMappings": [
+                {
+                    "containerPort": 8184,
+                    "hostPort": 8184,
+                    "protocol": "tcp"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "NODE_ENV",
+                    "value": "stage"
+                },
+                {
+                    "name": "ENV_VAR",
+                    "value": "stage"
+                }
+            ],
+            "essential": true,
+            "hostname": "nic-rooms-dimension-stage",
+            "mountPoints": [
+                {
+                    "sourceVolume": "database",
+                    "containerPath": "/data"
+                }
+            ]
+        }
+    ],
+    "volumes": [
+        {
+            "name": "database",
+            "dockerVolumeConfiguration" : {
+                "scope": "shared",
+                "autoprovision": true,
+                "driver": "local",
+                "labels": {
+                    "database": "dimension-database-stage"
+                }
+            }
+        }
+    ],
+    "requiresCompatibilities": ["EC2"],
+    "cpu": "128",
+    "memory": "256"
+}

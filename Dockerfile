@@ -1,5 +1,9 @@
 FROM node:10.16.0-alpine
 
+ARG ENV_VAR=dev
+
+RUN echo ">>>> Running container with environment = " ${ENV_VAR}
+
 LABEL maintainer="Andreas Peters <support@aventer.biz>"
 #Upstream URL: https://git.aventer.biz/AVENTER/docker-matrix-dimension
 
@@ -8,7 +12,7 @@ RUN apk add dos2unix --no-cache --repository http://dl-3.alpinelinux.org/alpine/
 RUN apk update && \
     apk add --no-cache bash gcc python make g++ sqlite && \
     mkdir /home/node/.npm-global && \
-    mkdir -p /home/node/app 
+    mkdir -p /home/node/app
 
 COPY ./docker-entrypoint.sh /
 COPY . /home/node/matrix-dimension
@@ -25,16 +29,16 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
 RUN cd /home/node/matrix-dimension && \
     npm install -D wd rimraf webpack webpack-command sqlite3 pg pg-hstore && \
-    NODE_ENV=production npm run-script build:web && npm run-script build:app 
+    NODE_ENV=production npm run-script build:web && npm run-script build:app
 
 USER root
+
+RUN chmod 777 /docker-entrypoint.sh
 
 RUN apk del gcc make g++ && \
     rm /home/node/matrix-dimension/Dockerfile && \
     rm /home/node/matrix-dimension/docker-entrypoint.sh && \
     dos2unix /docker-entrypoint.sh
-
-USER node
 
 VOLUME ["/data"]
 
@@ -43,5 +47,9 @@ ENV DIMENSION_DB_PATH=/data/dimension.db
 
 EXPOSE 8184
 #CMD ["/bin/sh"]
-ENTRYPOINT ["/docker-entrypoint.sh"]
- 
+RUN echo ">>>> Using ENV_VAR = " ${ENV_VAR}
+ENTRYPOINT exec /docker-entrypoint.sh ${ENV_VAR}
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+#ENTRYPOINT ["/bin/bash"]
+#CMD ["/docker-entrypoint", "${environment}"]
+
