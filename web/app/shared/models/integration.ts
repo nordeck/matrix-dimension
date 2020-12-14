@@ -94,6 +94,12 @@ export interface FE_MeetingsWidget extends FE_Widget {
     };
 }
 
+export interface FE_WhiteBoardWidget extends FE_Widget {
+    options: {
+        defaultUrl: string;
+    };
+}
+
 export interface FE_IntegrationRequirement {
     condition: "publicRoom" | "canSendEventTypes" | "userInRoom";
     argument: any;

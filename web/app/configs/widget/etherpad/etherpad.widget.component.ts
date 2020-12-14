@@ -15,7 +15,7 @@ export class EtherpadWidgetConfigComponent extends WidgetComponent {
     private etherpadWidget: FE_EtherpadWidget = <FE_EtherpadWidget>SessionStorage.editIntegration;
 
     constructor(private nameService: NameService) {
-        super(WIDGET_ETHERPAD, "Etherpad", "generic", "etherpad", "padName");
+        super(WIDGET_ETHERPAD, "Notes", "generic", "etherpad", "padName");
     }
 
     protected OnWidgetsDiscovered(widgets: EditableWidget[]): void {
@@ -34,7 +34,7 @@ export class EtherpadWidgetConfigComponent extends WidgetComponent {
     protected OnNewWidgetPrepared(widget: EditableWidget): void {
         const name = this.nameService.getHumanReadableName();
 
-        let template = "https://scalar.vector.im/etherpad/p/$roomId_$padName";
+        let template = "https://scalar.vector.im/etherpad/p/$roomId?$padName";
         if (this.etherpadWidget.options && this.etherpadWidget.options.defaultUrl) {
             template = this.etherpadWidget.options.defaultUrl;
         }

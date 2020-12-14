@@ -48,6 +48,7 @@ import { AdminTermsComponent } from "./admin/terms/terms.component";
 import { AdminNewEditTermsComponent } from "./admin/terms/new-edit/new-edit.component";
 import { TermsWidgetWrapperComponent } from "./widget-wrappers/terms/terms.component";
 import { MeetingsWidgetComponent } from "./configs/widget/meeting/meetings.widget.component";
+import { WhiteboardWidgetComponent } from "./configs/widget/whiteboard/whiteboard.widget.component";
 
 const routes: Routes = [
     {path: "", component: HomeComponent},
@@ -184,7 +185,7 @@ const routes: Routes = [
                     {
                         path: "etherpad",
                         component: EtherpadWidgetConfigComponent,
-                        data: {breadcrumb: "Etherpad Widgets", name: "Etherpad Widgets"},
+                        data: {breadcrumb: "Notes Widgets", name: "Notes Widgets"},
                     },
                     {
                         path: "googlecalendar",
@@ -230,6 +231,10 @@ const routes: Routes = [
                         path: "meeting",
                         component: MeetingsWidgetComponent,
                         data: {breadcrumb: "Meetings Widgets", name: "Meetings Widgets"},
+                    },
+                        path: "whiteboard",
+                        component: WhiteboardWidgetComponent,
+                        data: {breadcrumb: "Whiteboard Widgets", name: "Whiteboard Widgets"},
                     },
                 ],
             },

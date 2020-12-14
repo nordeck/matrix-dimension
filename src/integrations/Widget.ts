@@ -4,8 +4,10 @@ import WidgetRecord from "../db/models/WidgetRecord";
 export interface EtherpadWidgetOptions {
     defaultUrl: string;
 }
-
 export interface MeetingsWidgetOptions {
+    defaultUrl: string;
+}
+export interface WhiteboardWidgetOptions {
     defaultUrl: string;
 }
 
