@@ -6,6 +6,7 @@ import { Modal, overlayConfigFactory } from "ngx-modialog";
 import { BSModalContext } from "ngx-modialog/plugins/bootstrap";
 import { AdminWidgetJitsiConfigComponent } from "./jitsi/jitsi.component";
 import { AdminIntegrationsApiService } from "../../shared/services/admin/admin-integrations-api.service";
+import { AdminWidgetMeetingsConfigComponent } from "./meetings/meetings.component";
 import { AdminWidgetWhiteboardConfigComponent } from "./whiteboard/whiteboard.component";
 import { TranslateService } from "@ngx-translate/core";
 
@@ -58,6 +59,7 @@ export class AdminWidgetsComponent {
 
         if (widget.type === "etherpad") component = AdminWidgetEtherpadConfigComponent;
         if (widget.type === "jitsi") component = AdminWidgetJitsiConfigComponent;
+        if (widget.type === "meeting") component = AdminWidgetMeetingsConfigComponent;
         if (widget.type === "whiteboard") component = AdminWidgetWhiteboardConfigComponent;
 
         if (!component) {
@@ -77,7 +79,7 @@ export class AdminWidgetsComponent {
     }
 
     public hasConfiguration(widget: FE_Widget) {
-        // Currently only Jitsi and Etherpad and whiteboard have additional configuration
-        return widget.type === "jitsi" || widget.type === "etherpad" || widget.type === "whiteboard";
+        // Currently Jitsi, Etherpad, whiteboard and meetings have additional configuration
+        return widget.type === "jitsi" || widget.type === "etherpad" || widget.type === "whiteboard" || widget.type === "meeting";
     }
 }

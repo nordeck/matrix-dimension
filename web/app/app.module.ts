@@ -118,6 +118,8 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { AdminNewEditTermsComponent } from "./admin/terms/new-edit/new-edit.component";
 import { AdminTermsNewEditPublishDialogComponent } from "./admin/terms/new-edit/publish/publish.component";
 import { TermsWidgetWrapperComponent } from "./widget-wrappers/terms/terms.component";
+import { MeetingsWidgetComponent } from "./configs/widget/meeting/meetings.widget.component";
+import { AdminWidgetMeetingsConfigComponent } from "./admin/widgets/meetings/meetings.component";
 import { WhiteboardWidgetComponent } from "./configs/widget/whiteboard/whiteboard.widget.component";
 import { AdminWidgetWhiteboardConfigComponent } from "./admin/widgets/whiteboard/whiteboard.component";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
@@ -231,6 +233,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         AdminNewEditTermsComponent,
         AdminTermsNewEditPublishDialogComponent,
         TermsWidgetWrapperComponent,
+        MeetingsWidgetComponent,
+        AdminWidgetMeetingsConfigComponent
         WhiteboardWidgetComponent,
         AdminWidgetWhiteboardConfigComponent
 
@@ -289,6 +293,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         AdminSlackBridgeManageSelfhostedComponent,
         AdminLogoutConfirmationDialogComponent,
         AdminTermsNewEditPublishDialogComponent,
+        AdminWidgetMeetingsConfigComponent,
         AdminWidgetWhiteboardConfigComponent
     ]
 })

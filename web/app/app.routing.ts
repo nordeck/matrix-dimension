@@ -47,6 +47,7 @@ import { ManagerTestWidgetWrapperComponent } from "./widget-wrappers/manager-tes
 import { AdminTermsComponent } from "./admin/terms/terms.component";
 import { AdminNewEditTermsComponent } from "./admin/terms/new-edit/new-edit.component";
 import { TermsWidgetWrapperComponent } from "./widget-wrappers/terms/terms.component";
+import { MeetingsWidgetComponent } from "./configs/widget/meeting/meetings.widget.component";
 import { WhiteboardWidgetComponent } from "./configs/widget/whiteboard/whiteboard.widget.component";
 
 const routes: Routes = [
@@ -227,6 +228,10 @@ const routes: Routes = [
                         data: {breadcrumb: "Spotify Widgets", name: "Spotify Widgets"},
                     },
                     {
+                        path: "meeting",
+                        component: MeetingsWidgetComponent,
+                        data: {breadcrumb: "Meetings Widgets", name: "Meetings Widgets"},
+                    },
                         path: "whiteboard",
                         component: WhiteboardWidgetComponent,
                         data: {breadcrumb: "Whiteboard Widgets", name: "Whiteboard Widgets"},
