@@ -11,7 +11,8 @@ import {
     WIDGET_TRADINGVIEW,
     WIDGET_TWITCH,
     WIDGET_YOUTUBE,
-    WIDGET_MEETINGS
+    WIDGET_MEETINGS,
+    WIDGET_WHITEBOARD
 } from "../models/widget";
 import { FE_Integration } from "../models/integration";
 
@@ -68,7 +69,10 @@ export class IntegrationsRegistry {
             },
             "meeting": {
                 types: WIDGET_MEETINGS
-        }
+            },
+            "whiteboard": {
+                type: WIDGET_WHITEBOARD,
+            }
         },
     };
 

@@ -7,6 +7,7 @@ import {
     AdminLogoutConfirmationDialogComponent,
     LogoutConfirmationDialogContext
 } from "./logout-confirmation/logout-confirmation.component";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     templateUrl: "./home.component.html",
@@ -19,7 +20,8 @@ export class AdminHomeComponent {
 
     constructor(private adminApi: AdminApiService,
                 private toaster: ToasterService,
-                private modal: Modal) {
+                private modal: Modal,
+                public translate: TranslateService) {
         adminApi.getConfig().then(config => {
             this.config = config;
             this.isLoading = false;
@@ -31,11 +33,15 @@ export class AdminHomeComponent {
             isBlocking: true,
         }, LogoutConfirmationDialogContext)).result.then(() => {
             this.adminApi.logoutAll().then(() => {
-                this.toaster.pop("success", "Everyone has been logged out");
+                let errorMassage: string;
+                this.translate.get('Everyone has been logged out').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("success", errorMassage);
                 this.config.sessionInfo.numTokens = 0;
             }).catch(err => {
                 console.error(err);
-                this.toaster.pop("error", "Error logging everyone out");
+                let errorMassage: string;
+                this.translate.get('Error logging everyone out').subscribe((res: string) => {errorMassage = res});
+                this.toaster.pop("error", errorMassage);
             });
         });
     }

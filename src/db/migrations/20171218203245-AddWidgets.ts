@@ -25,12 +25,20 @@ export default {
                 },
                 {
                     type: "etherpad",
-                    name: "Etherpad",
+                    name: "Notes",
                     avatarUrl: "/img/avatars/etherpad.png",
                     isEnabled: true,
                     isPublic: true,
                     description: "Collaborate on documents with members of your room.",
-                    optionsJson: '{"defaultUrl":"https://scalar.vector.im/etherpad/p/$roomId_$padName"}',
+                    optionsJson: '{"defaultUrl":"https://scalar.vector.im/etherpad/p/$roomId?$padName"}',
+                },
+                {
+                    type: "whiteboard",
+                    name: "Whiteboard",
+                    avatarUrl: "/img/avatars/whiteboard.png",
+                    isEnabled: true,
+                    isPublic: true,
+                    description: "A whiteboard app embedded in the room.",
                 },
                 {
                     type: "googlecalendar",

@@ -3,6 +3,7 @@ import { ToasterService } from "angular2-toaster";
 import { DialogRef, ModalComponent } from "ngx-modialog";
 import { BSModalContext } from "ngx-modialog/plugins/bootstrap";
 import { AdminIrcApiService } from "../../../../shared/services/admin/admin-irc-api.service";
+import { TranslateService } from "@ngx-translate/core";
 
 export class AddSelfhostedIrcBridgeDialogContext extends BSModalContext {
 }
@@ -18,18 +19,23 @@ export class AdminIrcBridgeAddSelfhostedComponent implements ModalComponent<AddS
 
     constructor(public dialog: DialogRef<AddSelfhostedIrcBridgeDialogContext>,
                 private ircApi: AdminIrcApiService,
-                private toaster: ToasterService) {
+                private toaster: ToasterService,
+                public translate: TranslateService) {
     }
 
     public add() {
         this.isSaving = true;
         this.ircApi.newSelfhosted(this.provisionUrl).then(() => {
-            this.toaster.pop("success", "IRC Bridge added");
+            let errorMassage: string;
+            this.translate.get('IRC Bridge added').subscribe((res: string) => {errorMassage = res});
+            this.toaster.pop("success", errorMassage);
             this.dialog.close();
         }).catch(err => {
             console.error(err);
             this.isSaving = false;
-            this.toaster.pop("error", "Failed to create IRC bridge");
+            let errorMassage: string;
+            this.translate.get('Failed to create IRC bridge').subscribe((res: string) => {errorMassage = res});
+            this.toaster.pop("error", errorMassage);
         });
     }
 }
