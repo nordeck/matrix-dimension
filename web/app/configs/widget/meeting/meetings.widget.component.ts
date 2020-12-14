@@ -13,7 +13,7 @@ export class MeetingsWidgetComponent extends WidgetComponent {
 
    // constructor(private nameService: NameService) {
     constructor() {
-        super(WIDGET_MEETINGS, "meetings", "generic", "meeting", "");
+        super(WIDGET_MEETINGS, "meetings", "generic", "", "");
     }
     protected OnWidgetsDiscovered(widgets: EditableWidget[]): void {
         console.log(widgets);

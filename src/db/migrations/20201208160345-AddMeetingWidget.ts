@@ -7,7 +7,7 @@ export default {
                 {
                     type: "meeting",
                     name: "Meetings",
-                    avatarUrl: "/img/avatars/googlecalendar.png",
+                    avatarUrl: "/img/avatars/meeting.png",
                     isEnabled: true,
                     isPublic: true,
                     description: "Create and invite other people to meetings",
