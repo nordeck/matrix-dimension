@@ -10,7 +10,7 @@ export default {
                     avatarUrl: "/img/avatars/meeting.png",
                     isEnabled: true,
                     isPublic: true,
-                    description: "Create and invite other people to meetings",
+                    description: "Create meetings and invite other people",
                     optionsJson: '{"defaultUrl":"https://meetings.element-widgets.dev.nordeck.systems"}',
                 }
             ]));
